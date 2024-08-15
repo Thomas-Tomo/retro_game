@@ -40,12 +40,29 @@ document.addEventListener('keyup', function (event) {
 
 function startGame() {
   // Select the game area elements
+  const background = document.getElementById('game-area');
   const game_text = document.getElementsByClassName('game-info')[0];
   const game_area = document.getElementsByClassName('game-play')[0];
+  const active_btn = document.getElementById('play-btn');
+  const active_pad = document.getElementById('game-pad');
 
   // Ensure elements are found before applying styles
   if (game_text && game_area) {
     game_text.style.display = 'none';
     game_area.style.display = 'flex';
+    background.style.backgroundColor = 'black';
+    active_btn.style.display = 'none';
+    active_pad.style.display = 'flex';
+
+    window.scrollTo({
+      top: active_pad,
+      behavior: 'smooth',
+    });
+
+    // Trigger reflow to restart the animation
+    game_area.offsetWidth; // This line forces a reflow
+
+    // Add the pixelate animation class
+    game_area.classList.add('pixelate');
   }
 }
