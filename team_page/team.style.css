@@ -1,0 +1,33 @@
+* {
+    background-color: rgb(66, 219, 160);
+}
+
+h1, p {
+    color: black;
+}
+
+i { 
+    color: rgb(255, 255, 255)
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.member {
+    display:flex;
+    justify-content: space-around;
+
+}
+.member-image {
+    border-radius: 50%;
+    max-height: 120px;
+}
+.social-links{
+    display: flex;
+
+    justify-content: space-evenly;
+ 
+    
+}
