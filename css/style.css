@@ -173,7 +173,8 @@ section {
 
 #game-pad {
   display: none;
-  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
   align-items: center;
   background-color: #4a4a4a;
   padding: 20px;
@@ -188,7 +189,6 @@ section {
   grid-template-columns: 50px 50px 50px;
   grid-template-rows: 50px 50px 50px;
   gap: 10px;
-  margin-bottom: 40px;
   align-items: center;
   justify-content: center;
 }
