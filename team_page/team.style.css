@@ -1,11 +1,20 @@
+
+/*google style import */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
+
+/*  wildcard selector to override default styles added by the browser */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* General styles */
 body {
-    background-color: rgb(66, 219, 160);
+    background-color: #4caf50;
+    font-family: 'Silkscreen', sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.5;
 }
 
 header {
@@ -19,6 +28,7 @@ h1, p {
 
 
 .social-links i {
+    font-size: 150%;
     color: rgb(255, 255, 255);
 }
 
