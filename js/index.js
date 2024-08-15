@@ -37,3 +37,15 @@ document.addEventListener('keyup', function (event) {
       break;
   }
 });
+
+function startGame() {
+  // Select the game area elements
+  const game_text = document.getElementsByClassName('game-info')[0];
+  const game_area = document.getElementsByClassName('game-play')[0];
+
+  // Ensure elements are found before applying styles
+  if (game_text && game_area) {
+    game_text.style.display = 'none';
+    game_area.style.display = 'flex';
+  }
+}
