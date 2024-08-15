@@ -93,15 +93,21 @@ main {
 section {
   margin: 2rem auto;
   background-color: var(--extra-color-3);
-  padding: 20px;
+  padding-top: 10px;
   font-size: 14px;
   width: 80%;
+  border-radius: 5px;
 }
 
 .angles {
-  background-color: var(--accent-color);
-  width: 90%;
-  height: 100%;
+  background: var(--extra-color-3); /* Ensure this variable is defined */
+  width: 120%; /* Make it wider than the parent */
+  margin-left: -10%; /* Center the wider element */
+  margin-right: -10%; /* Center the wider element */
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0 100%);
+  padding: 10px 0 20px 0;
 }
 
 .links-head {
@@ -211,7 +217,7 @@ section {
   background-color: #4a4a4a;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   max-width: 800px;
   margin: 0 auto;
 }
@@ -311,4 +317,14 @@ section {
 .start:active,
 .reset:active {
   transform: scale(0.9);
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  height: 150px;
+  background-color: var(--extra-color-2);
+  width: 95%;
+  margin: auto;
+  margin-bottom: 20px;
 }
