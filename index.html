@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Retro Game</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Retro Game</h1>
-    </header>
-    <main>
-        <p>This is where the home page will be</p>
-    </main>
-</body>
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/712db90352.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Retro Game</h1>
+        <nav>
+          <ul>
+            <li><a class="links-head" href="#">Game</a></li>
+            <li><a class="links-head" href="#">Crew</a></li>
+            <li><a class="links-head" href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <h2>Welcome to Retro Game!</h2>
+        <p>Explore the world of this classic mashup.</p>
+
+        <section>
+          <div class="game-area">
+            <h2>Get ready to Roll</h2>
+            <p>
+              Experience the thrill of the Retro Game! Press the button below to
+              start playing.
+            </p>
+          </div>
+          <button class="play-btn" onclick="startGame()">Activate Game</button>
+
+          <div class="gamepad">
+            <div class="d-pad">
+              <div class="up"><i class="fa-solid fa-caret-up"></i></div>
+              <div class="down"><i class="fa-solid fa-caret-down"></i></div>
+              <div class="left"><i class="fa-solid fa-caret-left"></i></div>
+              <div class="right"><i class="fa-solid fa-caret-right"></i></div>
+            </div>
+            <div class="start">
+              <div class="button start">Start</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2022 Retro Game. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
 </html>
