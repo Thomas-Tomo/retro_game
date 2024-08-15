@@ -5,17 +5,20 @@
     background-color: rgb(66, 219, 160);
 }
 header {
-text-align: center;
-padding: 20px;
+    text-align: center;
+    padding: 20px;
 }
+
 
 h1, p {
     color: black;
 }
 
-i { 
+
+i {
     color: rgb(255, 255, 255)
 }
+
 
 .team-container {
     display: flex;
@@ -24,21 +27,25 @@ i {
     margin:15px;
 }
 
+
 .member {
     display:flex;
     justify-content: space-around;
     align-items: center;
     padding:15px;
 
+
 }
 .member-details {
     padding: inherit;
 }
 
+
 .member-image {
     border-radius: 50%;
     max-height: 120px;
 }
+
 
 .social-links{
     display: flex;
