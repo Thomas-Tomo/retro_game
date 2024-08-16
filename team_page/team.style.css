@@ -42,15 +42,18 @@ h1, p {
 
 
 .member {
-    display:flex;
-    justify-content: space-around;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    padding:15px;
-
-
+    padding-bottom: 20px;
 }
+
 .member-details {
-    padding: inherit;
+    padding: 5px;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 
@@ -59,11 +62,6 @@ h1, p {
     max-height: 120px;
 }
 
-
-.social-links{
-    display: flex;
-    justify-content: space-evenly;
-}
 .social-links a {
     padding: 10px;
 }
