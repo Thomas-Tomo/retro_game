@@ -17,6 +17,9 @@ export default class Scene1 extends Phaser.Scene {
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
+    // Load the life image
+    this.load.image("lifeImage", "assets/images/life.png");
+
     // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
     // Load the obstacle collision sound
@@ -36,7 +39,7 @@ export default class Scene1 extends Phaser.Scene {
       this.scale.height - 50
     );
 
-    // Initialize groups for flies and obstacles
+    // Initialize groups for flies, obstacles, and enemies
     this.flies = this.physics.add.group();
     this.obstacles = this.physics.add.group();
     this.enemies = this.physics.add.group();
@@ -51,26 +54,31 @@ export default class Scene1 extends Phaser.Scene {
     // Initialize score
     this.score = 0;
     this.scoreText = this.add.text(16, 16, "Flies: 0", {
-      fontSize: "32px",
+      fontSize: "18px",
       fill: "#fff",
     });
 
     // Initialize lives
     this.lives = 3;
-    this.livesText = this.add.text(16, 50, "Lives: 3", {
-      fontSize: "32px",
-      fill: "#fff",
-    });
+    this.livesImages = [];
+
+    // Display life images
+    for (let i = 0; i < this.lives; i++) {
+      const lifeImage = this.add
+        .image(16 + i * 40, 50, "lifeImage")
+        .setScale(2);
+      this.livesImages.push(lifeImage);
+    }
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 85, "Level 1", {
+      .text(this.scale.width / 2, 25, "Level 1", {
         fontSize: "32px",
         fill: "#fff",
       })
       .setOrigin(0.5);
 
-    // Load sound effect
+    // Load sound effects
     this.collectSound = this.sound.add("collectSound");
     this.collisionSound = this.sound.add("collisionSound");
     this.explosionSound = this.sound.add("explosionSound");
@@ -109,7 +117,7 @@ export default class Scene1 extends Phaser.Scene {
     // Hide the start button
     this.startButton.setVisible(false);
 
-    // Create fly obstacle and enemy timers
+    // Create fly, obstacle, and enemy timers
     this.flyTimer = this.time.addEvent({
       delay: 3000,
       callback: this.addFly,
@@ -229,7 +237,7 @@ export default class Scene1 extends Phaser.Scene {
     this.score += 1;
     this.scoreText.setText(`Flies: ${this.score}/${this.winCondition}`);
 
-    // Remove the flies position from occupied positions
+    // Remove the fly's position from occupied positions
     this.occupiedPositions = this.occupiedPositions.filter(
       (pos) => pos.x !== fly.x || pos.y !== fly.y
     );
@@ -260,48 +268,26 @@ export default class Scene1 extends Phaser.Scene {
     }
   }
 
+  updateLivesDisplay() {
+    this.livesImages.forEach((image, index) => {
+      image.setVisible(index < this.lives);
+    });
+  }
+
   hitObstacle(player, obstacle) {
-    // Only process hit if not in a "hit" state
     if (this.gameOver || player.hit) {
       return;
     }
 
-    // Play the collision sound
     this.collisionSound.play();
-
-    // Mark player as hit
     player.hit = true;
 
-    // Handle obstacle collision
     this.lives -= 1;
-    this.livesText.setText("Lives: " + this.lives);
+    this.updateLivesDisplay();
 
-    // Check if lives are exhausted
     if (this.lives <= 0) {
-      this.physics.pause();
-      this.flyTimer.paused = true; // Stop fly generation
-      this.obstacleTimer.paused = true; // Stop obstacle generation
-      player.setTint(0xff0000);
-      this.add
-        .text(
-          this.scale.width / 2,
-          this.scale.height / 2,
-          "Game Over\nPress SPACE to Restart",
-          {
-            fontSize: "32px",
-            fill: "#fff",
-            align: "center",
-          }
-        )
-        .setOrigin(0.5);
-      this.gameOver = true;
-
-      // Restart game on SPACE key press
-      this.input.keyboard.once("keydown-SPACE", () => {
-        this.scene.restart();
-      });
+      this.triggerGameOver(player);
     } else {
-      // Temporarily disable player controls
       this.player.sprite.setTint(0xff0000);
       this.time.delayedCall(1000, () => {
         this.player.sprite.clearTint();
@@ -311,26 +297,24 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   hitEnemy(player, enemy) {
-    // Only process hit if not in a "hit" state
     if (this.gameOver || player.hit) {
       return;
     }
 
-    // Play the collision sound
     this.explosionSound.play();
-
-    // Mark player as hit
     player.hit = true;
 
-    // Lose all lives
     this.lives = 0;
-    this.livesText.setText("Lives: " + this.lives);
+    this.updateLivesDisplay();
 
-    // Trigger game over logic
+    this.triggerGameOver(player);
+  }
+
+  triggerGameOver(player) {
     this.physics.pause();
     this.flyTimer.paused = true;
     this.obstacleTimer.paused = true;
-    this.enemyTimer.paused = true; // Stop enemy generation
+    this.enemyTimer.paused = true;
     player.setTint(0xff0000);
     this.add
       .text(
@@ -344,9 +328,9 @@ export default class Scene1 extends Phaser.Scene {
         }
       )
       .setOrigin(0.5);
+
     this.gameOver = true;
 
-    // Restart game on SPACE key press
     this.input.keyboard.once("keydown-SPACE", () => {
       this.scene.restart();
     });
@@ -356,25 +340,20 @@ export default class Scene1 extends Phaser.Scene {
     if (!this.gameOver) {
       this.player.update();
 
-      // Remove obstacles that have moved off the screen
       if (this.obstacles) {
         this.obstacles.children.iterate((obstacle) => {
           if (obstacle && obstacle.x < -obstacle.width) {
-            // Remove obstacle's position from occupied positions
             this.occupiedPositions = this.occupiedPositions.filter(
               (pos) => pos.x !== obstacle.x || pos.y !== obstacle.y
             );
             obstacle.destroy();
-            console.log("Obstacle destroyed at:", obstacle.x);
           }
         });
       }
 
-      // Remove coins that have moved off the screen
       if (this.flies) {
         this.flies.children.iterate((fly) => {
           if (fly && fly.y < 0) {
-            // Remove coin's position from occupied positions
             this.occupiedPositions = this.occupiedPositions.filter(
               (pos) => pos.x !== fly.x || pos.y !== fly.y
             );
