@@ -1,7 +1,7 @@
 export default class Obstacle {
   constructor(scene, x, y, speed) {
     this.scene = scene;
-    this.sprite = scene.physics.add.sprite(x, y, "car");
+    this.sprite = scene.physics.add.sprite(x, y, "rock");
 
     // Obstacle size
     this.sprite.setDisplaySize(50, 50); // Adjust as needed

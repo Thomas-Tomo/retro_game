@@ -11,8 +11,9 @@ export default class Scene1 extends Phaser.Scene {
     // Load assets
     this.load.image("frog", "assets/frog.png");
     this.load.image("fly", "assets/fly.png");
-    this.load.image("car", "assets/car.png");
-    this.load.image("startButton", "assets/start_button.png");
+    this.load.image("rock", "assets/images/rock50-50.png");
+    // Load the play button image
+    this.load.image("startButton", "assets/images/play.png");
 
     // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
@@ -39,6 +40,7 @@ export default class Scene1 extends Phaser.Scene {
     this.startButton = this.add
       .sprite(this.scale.width / 2, this.scale.height / 2, "startButton")
       .setInteractive()
+      .setDisplaySize(100, 100) // Set the width and height here
       .on("pointerdown", () => this.startGame());
 
     // Initialize score
