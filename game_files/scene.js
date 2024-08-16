@@ -15,7 +15,7 @@ export default class Scene1 extends Phaser.Scene {
     this.load.image("startButton", "assets/start_button.png");
 
     // Load the collect sound
-    this.load.audio("collectSound", "assets/pickupCoin.wav");
+    this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
   }
 
   create() {
