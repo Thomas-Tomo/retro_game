@@ -30,8 +30,7 @@ p {
 }
 
 body {
-  background-image: url('retro_background.jpg');
-  background-repeat: repeat;
+  background-color: #4a4a4a;
 }
 
 h1 {
@@ -45,6 +44,7 @@ header {
   text-align: center;
   height: 150px;
   background-color: var(--extra-color-2);
+  text-shadow: var(--text-shadow);
 }
 
 #header {
@@ -66,14 +66,16 @@ header {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #000;
+  background-color: #4a4a4a;
 }
 
-header h1 {
+header h1 a {
   color: var(--extra-color-1); /* Text color */
   font-size: 3rem;
   text-transform: uppercase;
   text-shadow: var(--text-shadow); /* Add text shadow */
+  list-style-type: none;
+  text-decoration: none;
 }
 
 ul {
@@ -83,6 +85,21 @@ ul {
   list-style-type: none;
   margin: 20px 0;
   padding: 0;
+}
+
+.headLink {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 20px;
+  color: var(--extra-color-1);
+}
+
+ul li #links-1:hover,
+ul li #links-2:hover,
+ul li #links-3:hover {
+  font-size: larger;
+  color: var(--extra-color-3);
 }
 
 main {
@@ -108,19 +125,6 @@ section {
   align-items: center;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0 100%);
   padding: 10px 0 20px 0;
-}
-
-.links-head {
-  text-transform: uppercase;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 20px;
-  color: var(--extra-color-1);
-}
-
-.links-head:hover {
-  font-size: 1.5rem;
-  color: var(--extra-color-3);
 }
 
 /*This is game screen */
@@ -214,7 +218,7 @@ section {
   gap: 40px;
   justify-content: center;
   align-items: center;
-  background-color: #4a4a4a;
+  background-color: #272727;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
