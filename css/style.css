@@ -158,6 +158,12 @@ section {
   text-transform: uppercase;
 }
 
+#game-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 /* Define the pixelated transition effect */
 @keyframes pixelate {
   0% {
