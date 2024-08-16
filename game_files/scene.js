@@ -16,6 +16,8 @@ export default class Scene1 extends Phaser.Scene {
 
     // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
+    // Load the obstacle collision sound
+    this.load.audio("collisionSound", "assets/sounds/explosion.wav");
   }
 
   create() {
@@ -63,6 +65,7 @@ export default class Scene1 extends Phaser.Scene {
 
     // Load sound effect
     this.collectSound = this.sound.add("collectSound");
+    this.collisionSound = this.sound.add("collisionSound");
 
     // Win condition and game over flag
     this.winCondition = 3;
@@ -217,6 +220,9 @@ export default class Scene1 extends Phaser.Scene {
     if (this.gameOver || player.hit) {
       return;
     }
+
+    // Play the collision sound
+    this.collisionSound.play();
 
     // Mark player as hit
     player.hit = true;
