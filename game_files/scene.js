@@ -1,6 +1,7 @@
 import Player from "./player.js";
 import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
+import Enemy from "./enemy.js";
 
 export default class Scene1 extends Phaser.Scene {
   constructor() {
@@ -12,6 +13,7 @@ export default class Scene1 extends Phaser.Scene {
     this.load.image("frog", "assets/frog.png");
     this.load.image("fly", "assets/fly.png");
     this.load.image("rock", "assets/images/rock50-50.png");
+    this.load.image("enemyImage", "assets/images/mario.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -19,6 +21,8 @@ export default class Scene1 extends Phaser.Scene {
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
     // Load the obstacle collision sound
     this.load.audio("collisionSound", "assets/sounds/explosion.wav");
+    // Load the enemy collision sound
+    this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
   }
 
   create() {
@@ -35,6 +39,7 @@ export default class Scene1 extends Phaser.Scene {
     // Initialize groups for flies and obstacles
     this.flies = this.physics.add.group();
     this.obstacles = this.physics.add.group();
+    this.enemies = this.physics.add.group();
 
     // Create a start button
     this.startButton = this.add
@@ -68,6 +73,7 @@ export default class Scene1 extends Phaser.Scene {
     // Load sound effect
     this.collectSound = this.sound.add("collectSound");
     this.collisionSound = this.sound.add("collisionSound");
+    this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
     this.winCondition = 3;
@@ -76,6 +82,7 @@ export default class Scene1 extends Phaser.Scene {
     // Timers for generating flies and obstacles (initially disabled)
     this.flyTimer = null;
     this.obstacleTimer = null;
+    this.enemyTimer = null;
 
     // Occupied positions
     this.occupiedPositions = [];
@@ -102,7 +109,7 @@ export default class Scene1 extends Phaser.Scene {
     // Hide the start button
     this.startButton.setVisible(false);
 
-    // Create fly and obstacle timers
+    // Create fly obstacle and enemy timers
     this.flyTimer = this.time.addEvent({
       delay: 3000,
       callback: this.addFly,
@@ -113,6 +120,13 @@ export default class Scene1 extends Phaser.Scene {
     this.obstacleTimer = this.time.addEvent({
       delay: 2000,
       callback: this.addObstacle,
+      callbackScope: this,
+      loop: true,
+    });
+
+    this.enemyTimer = this.time.addEvent({
+      delay: 5000, // Enemies appear less frequently
+      callback: this.addEnemy,
       callbackScope: this,
       loop: true,
     });
@@ -129,6 +143,14 @@ export default class Scene1 extends Phaser.Scene {
       this.player.sprite,
       this.obstacles,
       this.hitObstacle,
+      null,
+      this
+    );
+
+    this.physics.add.collider(
+      this.player.sprite,
+      this.enemies,
+      this.hitEnemy,
       null,
       this
     );
@@ -175,6 +197,27 @@ export default class Scene1 extends Phaser.Scene {
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
 
     console.log("Obstacle added at:", obstacleX, obstacleY); // Debugging
+  }
+
+  addEnemy() {
+    // Find a valid position for the enemy
+    let enemyX, enemyY;
+    do {
+      enemyX = Phaser.Math.Between(0, this.scale.width - 50);
+      enemyY = Phaser.Math.Between(100, this.scale.height - 100);
+    } while (this.isPositionOccupied(enemyX, enemyY));
+
+    // Create and add the enemy at the random position
+    const enemy = new Enemy(
+      this,
+      enemyX,
+      enemyY,
+      Phaser.Math.Between(100, 200)
+    );
+    this.enemies.add(enemy.sprite);
+    this.occupiedPositions.push({ x: enemyX, y: enemyY });
+
+    console.log("Enemy added at:", enemyX, enemyY); // Debugging
   }
 
   collectFly(player, fly) {
@@ -265,6 +308,48 @@ export default class Scene1 extends Phaser.Scene {
         player.hit = false;
       });
     }
+  }
+
+  hitEnemy(player, enemy) {
+    // Only process hit if not in a "hit" state
+    if (this.gameOver || player.hit) {
+      return;
+    }
+
+    // Play the collision sound
+    this.explosionSound.play();
+
+    // Mark player as hit
+    player.hit = true;
+
+    // Lose all lives
+    this.lives = 0;
+    this.livesText.setText("Lives: " + this.lives);
+
+    // Trigger game over logic
+    this.physics.pause();
+    this.flyTimer.paused = true;
+    this.obstacleTimer.paused = true;
+    this.enemyTimer.paused = true; // Stop enemy generation
+    player.setTint(0xff0000);
+    this.add
+      .text(
+        this.scale.width / 2,
+        this.scale.height / 2,
+        "Game Over\nPress SPACE to Restart",
+        {
+          fontSize: "32px",
+          fill: "#fff",
+          align: "center",
+        }
+      )
+      .setOrigin(0.5);
+    this.gameOver = true;
+
+    // Restart game on SPACE key press
+    this.input.keyboard.once("keydown-SPACE", () => {
+      this.scene.restart();
+    });
   }
 
   update() {
