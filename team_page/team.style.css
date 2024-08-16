@@ -20,6 +20,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
+    margin:2em 0;
 }
 
 h1, p {
@@ -60,6 +61,7 @@ h1, p {
 .member-image {
     border-radius: 50%;
     max-height: 120px;
+    background-color: white;
 }
 
 .social-links a {
