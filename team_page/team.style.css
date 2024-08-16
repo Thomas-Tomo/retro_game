@@ -1,38 +1,67 @@
 
 /*google style import */
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
-
+:root {
+    --primary-color: #4caf50;
+    --secondary-color: #8bc34a;
+    --accent-color: #cddc39;
+    --extra-color-1: #ffdecf;
+    --extra-color-2: #e27f86;
+    --extra-color-3: #717ed4;
+    --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
 /*  wildcard selector to override default styles added by the browser */
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
-}
-
-/* General styles */
-body {
-    background-color: #4caf50;
+    margin: 0;
+    padding: 0;
     font-family: 'Silkscreen', sans-serif;
     letter-spacing: 2px;
     line-height: 1.5;
-}
+  }
 
+/* General styles */
+body {
+
+    background-color: #4caf50;
+}
 header {
+    padding: 20px;
+    text-align: center;
+    height: 14em; 
+    background-color: var(--extra-color-2);
+    text-shadow: var(--text-shadow);
+    margin:2em 0;
+  }
+  
+/*header {
     text-align: center;
     padding: 20px;
-    margin:2em 0;
 }
+*/
 
 h1, p {
     color: black;
 }
 
-
-.social-links i {
-    font-size: 150%;
-    color: #b16418;
+a {
+    padding-bottom: 10px;
+    color:white;
 }
 
+.controller {
+    max-height: 100px;
+}
+
+.social-links i {
+    font-size: 2em;
+    color: white;
+    background-color: #6c757d;
+}
+
+.social-links a {
+    padding: 10px;
+}
 
 .team-container {
     display: flex;
@@ -41,7 +70,6 @@ h1, p {
     margin:15px;
 }
 
-
 .member {
     display: flex;
     justify-content: flex-start;
@@ -49,21 +77,36 @@ h1, p {
     padding-bottom: 20px;
 }
 
+.member-image {
+    border-radius: 50%;
+    border: 5px solid #0dcaf0;
+    max-height: 120px;
+    max-width: 120px;
+    background-color: white;
+}
 .member-details {
     padding: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
-
-.member-image {
-    border-radius: 50%;
-    max-height: 120px;
-    background-color: white;
+.fa-github-alt {
+    color: #ffdecf;
+    font-size: 3rem;
 }
-
-.social-links a {
-    padding: 10px;
+.cats {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+footer {
+    padding: 20px;
+    text-align: center;
+    height: 14em;
+    background-color: #e27f86;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
