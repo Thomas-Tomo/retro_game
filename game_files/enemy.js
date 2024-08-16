@@ -6,7 +6,7 @@ export default class Enemy {
     this.sprite = scene.physics.add.sprite(x, y, "enemyImage");
 
     // Set the size of the enemy sprite
-    this.sprite.setDisplaySize(60, 60);
+    this.sprite.setDisplaySize(30, 30);
 
     // Choose a random direction (0 for horizontal, 1 for vertical)
     const direction = Phaser.Math.Between(0, 1);

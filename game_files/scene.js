@@ -11,7 +11,7 @@ export default class Scene1 extends Phaser.Scene {
   preload() {
     // Load assets
     this.load.image("frog", "assets/frog.png");
-    this.load.image("fly", "assets/fly.png");
+    this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/rock50-50.png");
     this.load.image("enemyImage", "assets/images/mario.png");
     // Load the play button image
@@ -84,7 +84,7 @@ export default class Scene1 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
-    this.winCondition = 3;
+    this.winCondition = 5;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
