@@ -11,7 +11,7 @@ export default class Scene1 extends Phaser.Scene {
     // Load assets
     this.load.image("frog", "assets/frog.png");
     this.load.image("fly", "assets/fly.png");
-    this.load.image("car", "assets/car.png");
+    this.load.image("rock", "assets/images/rock50-50.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
