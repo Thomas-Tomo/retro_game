@@ -45,6 +45,7 @@ function startGame() {
   const game_area = document.getElementsByClassName('game-play')[0];
   const active_btn = document.getElementById('play-btn');
   const active_pad = document.getElementById('game-pad');
+  const scrollHead = document.getElementById('scrollHead');
 
   // Ensure elements are found before applying styles
   if (game_text && game_area) {
@@ -55,7 +56,7 @@ function startGame() {
     active_pad.style.display = 'flex';
 
     window.scrollTo({
-      top: active_pad,
+      top: scrollHead.offsetTop,
       behavior: 'smooth',
     });
 
@@ -66,3 +67,8 @@ function startGame() {
     game_area.classList.add('pixelate');
   }
 }
+// sound effect for site load
+window.addEventListener('load', function () {
+  const audio = document.getElementById('load-sound');
+  audio.play();
+});
