@@ -1,4 +1,6 @@
-'use strict';
+import startGame from './game.js';
+
+('use strict');
 
 document.addEventListener('keydown', function (event) {
   switch (event.key) {
@@ -38,7 +40,7 @@ document.addEventListener('keyup', function (event) {
   }
 });
 
-function startGame() {
+function beginGame() {
   // Select the game area elements
   const background = document.getElementById('game-area');
   const game_text = document.getElementsByClassName('game-info')[0];
@@ -64,5 +66,6 @@ function startGame() {
 
     // Add the pixelate animation class
     game_area.classList.add('pixelate');
+
   }
 }

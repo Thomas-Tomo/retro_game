@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Retro Game</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+    <script type="module" src="js/game.js" defer></script>
+    <script src="js/index.js"></script>
     <script
       src="https://kit.fontawesome.com/712db90352.js"
       crossorigin="anonymous"></script>
@@ -28,9 +31,7 @@
                 <a class="headLink" id="links-1" href="#play-btn">Game</a>
               </li>
               <li>
-                <a class="headLink" id="links-2" href="/team_page/team.html"
-                  >Crew</a
-                >
+                <a class="headLink" id="links-2" href="/team_page/team.html">Crew</a>
               </li>
               <li><a class="headLink" id="links-3" href="#footer">Contact</a></li>
             </ul>
@@ -57,12 +58,12 @@
               </p>
             </div>
             <div class="game-play">
-              <img src="/images/test-img.webp" alt="test image" />
+            <div id="game-container"></div>
             </div>
           </div>
 
           <div class="angles">
-            <button id="play-btn" onclick="startGame()">Activate Game</button>
+            <button id="play-btn" onclick='startGame()'>Activate Game</button>
 
             <div id="game-pad">
               <div class="select-start">
@@ -96,11 +97,8 @@
         <h4 class="cats">some cool cats</h4>
         <div class="footer-links">
           <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank"
-            ><i class="fa-brands fa-github-alt"></i></i
-          ></a>
-         
+            ><i class="fa-brands fa-github-alt"></i></i></a>
       </footer >
     </div>
-    <script src="js/index.js"></script>
   </body>
 </html>

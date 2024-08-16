@@ -141,9 +141,9 @@ section {
   overflow: hidden;
 }
 
-.game-play {
+/* .game-play {
   display: none;
-}
+} */
 
 .game-play img {
   max-width: 100%;
