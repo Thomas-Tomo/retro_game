@@ -74,7 +74,7 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .member-image {
@@ -101,7 +101,7 @@ a {
     margin-top: 10px;
 }
 footer {
-    padding: 20px;
+    padding-top: 60px;
     text-align: center;
     height: 14em;
     background-color: #e27f86;
