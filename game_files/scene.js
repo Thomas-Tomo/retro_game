@@ -11,7 +11,7 @@ export default class Scene1 extends Phaser.Scene {
   preload() {
     // Load assets
     this.load.image("frog", "assets/frog.png");
-    this.load.image("fly", "assets/fly.png");
+    this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/rock50-50.png");
     this.load.image("enemyImage", "assets/images/mario.png");
     // Load the play button image
@@ -51,13 +51,13 @@ export default class Scene1 extends Phaser.Scene {
       .setDisplaySize(100, 100) // Set the width and height here
       .on("pointerdown", () => this.startGame());
 
-    // Initialize score
-    this.score = 0;
-    this.scoreText = this.add.text(16, 16, "Flies: 0", {
-      fontSize: "18px",
-      fill: "#fff",
-    });
-
+     // Initialize score
+  this.score = 0;
+  this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40); // Fly image
+  this.scoreText = this.add.text(40, 10, `0`, {
+    fontSize: "18px",
+    fill: "#fff",
+  });
     // Initialize lives
     this.lives = 3;
     this.livesImages = [];
@@ -84,7 +84,7 @@ export default class Scene1 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
-    this.winCondition = 3;
+    this.winCondition = 5;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
@@ -235,7 +235,7 @@ export default class Scene1 extends Phaser.Scene {
     // Handle fly collection
     fly.destroy();
     this.score += 1;
-    this.scoreText.setText(`Flies: ${this.score}/${this.winCondition}`);
+    this.scoreText.setText(`${this.score}/${this.winCondition}`);
 
     // Remove the fly's position from occupied positions
     this.occupiedPositions = this.occupiedPositions.filter(
