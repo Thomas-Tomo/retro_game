@@ -214,7 +214,7 @@ export default class Scene4 extends Phaser.Scene {
       obstacleX,
       obstacleY,
       Phaser.Math.Between(100, 200),
-      "enemyImage"
+      "enemyImage4"
     );
     this.obstacles.add(obstacle.sprite);
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
