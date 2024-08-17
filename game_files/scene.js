@@ -27,6 +27,8 @@ export default class Scene1 extends Phaser.Scene {
     // Load the enemy collision sound
     this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
     this.load.audio("moveSound", "assets/sounds/move.wav");
+    // Load game over sound
+    this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
   }
 
   create() {
@@ -52,13 +54,13 @@ export default class Scene1 extends Phaser.Scene {
       .setDisplaySize(100, 100) // Set the width and height here
       .on("pointerdown", () => this.startGame());
 
-     // Initialize score
-  this.score = 0;
-  this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40); // Fly image
-  this.scoreText = this.add.text(40, 10, `0`, {
-    fontSize: "18px",
-    fill: "#fff",
-  });
+    // Initialize score
+    this.score = 0;
+    this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40); // Fly image
+    this.scoreText = this.add.text(40, 10, `0`, {
+      fontSize: "18px",
+      fill: "#fff",
+    });
     // Initialize lives
     this.lives = 3;
     this.livesImages = [];
@@ -317,6 +319,9 @@ export default class Scene1 extends Phaser.Scene {
     this.flyTimer.paused = true;
     this.obstacleTimer.paused = true;
     this.enemyTimer.paused = true;
+
+    this.sound.play("gameOverSound");
+
     player.setTint(0xff0000);
     this.add
       .text(
