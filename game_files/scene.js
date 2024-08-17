@@ -10,7 +10,7 @@ export default class Scene1 extends Phaser.Scene {
 
   preload() {
     // Load assets
-    this.load.image("frog", "assets/frog.png");
+    this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/rock50-50.png");
     this.load.image("enemyImage", "assets/images/mario.png");
@@ -72,8 +72,9 @@ export default class Scene1 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "Level 1", {
-        fontSize: "32px",
+      .text(this.scale.width / 2, 25, "LEVEL 1", {
+        // fontSize: "32px",
+        font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
       .setOrigin(0.5);
