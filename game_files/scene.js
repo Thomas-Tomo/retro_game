@@ -87,7 +87,7 @@ export default class Scene1 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
-    this.winCondition = 5;
+    this.winCondition = 3;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
@@ -223,7 +223,8 @@ export default class Scene1 extends Phaser.Scene {
       this,
       enemyX,
       enemyY,
-      Phaser.Math.Between(100, 200)
+      Phaser.Math.Between(100, 200),
+      "enemyImage"
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
