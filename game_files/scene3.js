@@ -3,9 +3,9 @@ import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
 import Enemy from "./enemy.js";
 
-export default class Scene2 extends Phaser.Scene {
+export default class Scene3 extends Phaser.Scene {
   constructor() {
-    super({ key: "Scene2" });
+    super({ key: "Scene3" });
   }
 
   preload() {
@@ -13,7 +13,7 @@ export default class Scene2 extends Phaser.Scene {
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/fire.png");
-    this.load.image("enemyImage2", "assets/images/sonicrobot2.png");
+    this.load.image("enemyImage3", "assets/images/cronvil.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -75,7 +75,7 @@ export default class Scene2 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL SONIC", {
+      .text(this.scale.width / 2, 25, "LEVEL CRONVIL", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
@@ -87,7 +87,7 @@ export default class Scene2 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
-    this.winCondition = 5;
+    this.winCondition = 8;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
@@ -111,7 +111,7 @@ export default class Scene2 extends Phaser.Scene {
       const y = Phaser.Math.Between(0, this.scale.height);
 
       // Draw a star
-      this.starsGraphics.fillStyle(0xffff00, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
+      this.starsGraphics.fillStyle(0xff0000, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
       this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
     }
   }
@@ -225,7 +225,7 @@ export default class Scene2 extends Phaser.Scene {
       enemyX,
       enemyY,
       Phaser.Math.Between(100, 200),
-      "enemyImage2"
+      "enemyImage3"
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
@@ -264,9 +264,9 @@ export default class Scene2 extends Phaser.Scene {
         )
         .setOrigin(0.5);
 
-      // Transition to Scene3 after a short delay
+      // Transition to Scene4 after a short delay
       this.time.delayedCall(2000, () => {
-        this.scene.start("Scene3");
+        this.scene.start("Scene4");
       });
 
       this.gameOver = true;
@@ -340,7 +340,7 @@ export default class Scene2 extends Phaser.Scene {
     this.gameOver = true;
 
     this.input.keyboard.once("keydown-SPACE", () => {
-      this.scene.start("Scene1");
+      this.scene.start("Scene2");
     });
   }
 
