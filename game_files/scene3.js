@@ -75,7 +75,7 @@ export default class Scene3 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL CRONVIL", {
+      .text(this.scale.width / 2, 25, "LEVEL CONTRA", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
