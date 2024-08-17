@@ -53,6 +53,7 @@ main {
 .social-links i:hover {
   color: var(--extra-color-3);
   transform: scale(1.2);
+  text-shadow: var(--text-shadow);
 }
 
 .container {
