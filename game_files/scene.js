@@ -26,6 +26,7 @@ export default class Scene1 extends Phaser.Scene {
     this.load.audio("collisionSound", "assets/sounds/explosion.wav");
     // Load the enemy collision sound
     this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
+    this.load.audio("moveSound", "assets/sounds/move.wav");
   }
 
   create() {
