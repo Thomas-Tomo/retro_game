@@ -1,9 +1,9 @@
 export default class Enemy {
-  constructor(scene, x, y, speed) {
+  constructor(scene, x, y, speed, imageKey) {
     this.scene = scene;
     this.originalX = x; // Store the initial x position
     this.originalY = y; // Store the initial y position
-    this.sprite = scene.physics.add.sprite(x, y, "enemyImage");
+    this.sprite = scene.physics.add.sprite(x, y, imageKey);
 
     // Set the size of the enemy sprite
     this.sprite.setDisplaySize(30, 30);
