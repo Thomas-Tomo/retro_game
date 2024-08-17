@@ -75,7 +75,7 @@ export default class Scene1 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL 1", {
+      .text(this.scale.width / 2, 25, "LEVEL MARIO", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
