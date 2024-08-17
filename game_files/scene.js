@@ -76,7 +76,6 @@ export default class Scene1 extends Phaser.Scene {
     // Initialize level text
     this.levelText = this.add
       .text(this.scale.width / 2, 25, "LEVEL 1", {
-        // fontSize: "32px",
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
@@ -257,7 +256,7 @@ export default class Scene1 extends Phaser.Scene {
           this.scale.height / 2,
           "You Win! Moving to Next Level...",
           {
-            fontSize: "32px",
+            font: "30px 'Pixelify Sans'",
             fill: "#fff",
           }
         )
@@ -329,7 +328,7 @@ export default class Scene1 extends Phaser.Scene {
         this.scale.height / 2,
         "Game Over\nPress SPACE to Restart",
         {
-          fontSize: "32px",
+          font: "30px 'Pixelify Sans'",
           fill: "#fff",
           align: "center",
         }
