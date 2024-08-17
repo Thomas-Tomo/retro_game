@@ -12,7 +12,7 @@ export default class Player {
     this.cursors = scene.input.keyboard.createCursorKeys();
 
     // Add the movement sound effect with adjusted volume
-    this.moveSound = this.scene.sound.add("moveSound", { volume: 1.2 });
+    this.moveSound = this.scene.sound.add("moveSound", { volume: 0.2 });
 
     // Timer for managing sound playback
     this.soundTimer = 0;
