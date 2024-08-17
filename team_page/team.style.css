@@ -1,112 +1,127 @@
-
 /*google style import */
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
 :root {
-    --primary-color: #4caf50;
-    --secondary-color: #8bc34a;
-    --accent-color: #cddc39;
-    --extra-color-1: #ffdecf;
-    --extra-color-2: #e27f86;
-    --extra-color-3: #717ed4;
-    --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+  --primary-color: #4caf50;
+  --secondary-color: #8bc34a;
+  --accent-color: #cddc39;
+  --extra-color-1: #ffdecf;
+  --extra-color-2: #e27f86;
+  --extra-color-3: #717ed4;
+  --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
 }
 /*  wildcard selector to override default styles added by the browser */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Silkscreen', sans-serif;
-    letter-spacing: 2px;
-    line-height: 1.5;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Silkscreen', sans-serif;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
 
 /* General styles */
 body {
-
-    background-color: #4caf50;
+  background-color: var(--primary-color);
 }
+
 header {
-    padding: 20px;
-    text-align: center;
-    height: 14em; 
-    background-color: var(--extra-color-2);
-    text-shadow: var(--text-shadow);
-    margin:2em 0;
-  }
-  
-/*header {
-    text-align: center;
-    padding: 20px;
+  padding: 20px;
+  text-align: center;
+  height: 150px;
+  background-color: var(--extra-color-2);
+  text-shadow: var(--text-shadow);
 }
-*/
 
-h1, p {
-    color: black;
+#header {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.circles {
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px;
+  gap: 20px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+h1,
+p {
+  color: black;
 }
 
 a {
-    padding-bottom: 10px;
-    color:white;
+  padding-bottom: 10px;
+  color: white;
 }
 
 .controller {
-    max-height: 100px;
+  max-height: 100px;
 }
 
 .social-links i {
-    font-size: 2em;
-    color: white;
-    background-color: #6c757d;
+  font-size: 2em;
+  color: white;
+  background-color: #6c757d;
 }
 
 .social-links a {
-    padding: 10px;
+  padding: 10px;
 }
 
 .team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin:15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 15px;
 }
 
 .member {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 30px;
 }
 
 .member-image {
-    border-radius: 50%;
-    border: 5px solid #0dcaf0;
-    max-height: 120px;
-    max-width: 120px;
-    background-color: white;
+  border-radius: 50%;
+  border: 5px solid #0dcaf0;
+  max-height: 120px;
+  max-width: 120px;
+  background-color: white;
 }
 .member-details {
-    padding: 5px;
-    margin-left: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+  padding: 5px;
+  margin-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .fa-github-alt {
-    color: #ffdecf;
-    font-size: 3rem;
+  color: #ffdecf;
+  font-size: 3rem;
 }
 .cats {
-    font-size: 1.5rem;
-    margin-top: 10px;
+  font-size: 1.5rem;
+  margin-top: 10px;
 }
 footer {
-    padding-top: 60px;
-    text-align: center;
-    height: 14em;
-    background-color: #e27f86;
-    width: 95%;
-    margin: auto;
-    margin-bottom: 20px;
-    border-radius: 5px;
+  padding-top: 60px;
+  text-align: center;
+  height: 14em;
+  background-color: #e27f86;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
