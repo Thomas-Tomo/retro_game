@@ -123,3 +123,20 @@ footer {
   transform: scale(1.2);
   color: #272727;
 }
+
+@media screen and (max-width: 1030px) {
+  #header {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  #header h1 a {
+    font-size: 2.2rem;
+    margin: 10px;
+  }
+  .headLink {
+    margin: 10px;
+  }
+  .circles {
+    display: none;
+  }
+}
