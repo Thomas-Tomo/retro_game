@@ -3,17 +3,17 @@ import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
 import Enemy from "./enemy.js";
 
-export default class Scene1 extends Phaser.Scene {
+export default class Scene2 extends Phaser.Scene {
   constructor() {
-    super({ key: "Scene1" });
+    super({ key: "Scene2" });
   }
 
   preload() {
     // Load assets
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
-    this.load.image("rock", "assets/images/rock50-50.png");
-    this.load.image("enemyImage", "assets/images/mario.png");
+    this.load.image("rock", "assets/images/fire.png");
+    this.load.image("enemyImage2", "assets/images/sonicrobot2.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -75,7 +75,7 @@ export default class Scene1 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL MARIO", {
+      .text(this.scale.width / 2, 25, "LEVEL SONIC", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
@@ -87,7 +87,7 @@ export default class Scene1 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Win condition and game over flag
-    this.winCondition = 3;
+    this.winCondition = 5;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
@@ -111,7 +111,7 @@ export default class Scene1 extends Phaser.Scene {
       const y = Phaser.Math.Between(0, this.scale.height);
 
       // Draw a star
-      this.starsGraphics.fillStyle(0xffffff, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
+      this.starsGraphics.fillStyle(0xffff00, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
       this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
     }
   }
@@ -136,7 +136,7 @@ export default class Scene1 extends Phaser.Scene {
     });
 
     this.enemyTimer = this.time.addEvent({
-      delay: 5000, // Enemies appear less frequently
+      delay: 4800, // Enemies appear less frequently
       callback: this.addEnemy,
       callbackScope: this,
       loop: true,
@@ -202,7 +202,8 @@ export default class Scene1 extends Phaser.Scene {
       this,
       obstacleX,
       obstacleY,
-      Phaser.Math.Between(100, 200)
+      Phaser.Math.Between(100, 200),
+      "enemyImage"
     );
     this.obstacles.add(obstacle.sprite);
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
@@ -224,7 +225,7 @@ export default class Scene1 extends Phaser.Scene {
       enemyX,
       enemyY,
       Phaser.Math.Between(100, 200),
-      "enemyImage"
+      "enemyImage2"
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
@@ -263,9 +264,9 @@ export default class Scene1 extends Phaser.Scene {
         )
         .setOrigin(0.5);
 
-      // Transition to Scene2 after a short delay
+      // Transition to Scene3 after a short delay
       this.time.delayedCall(2000, () => {
-        this.scene.start("Scene2");
+        this.scene.start("Scene3");
       });
 
       this.gameOver = true;
