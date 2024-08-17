@@ -43,12 +43,9 @@ h1 {
 header {
   padding: 20px;
   text-align: center;
-  height: 150px;
+  max-height: 150px;
   background-color: var(--extra-color-2);
   text-shadow: var(--text-shadow);
-}
-
-#header {
   margin: 20px;
   display: flex;
   justify-content: space-between;
@@ -125,4 +122,21 @@ footer {
 .fa-github-alt:hover {
   transform: scale(1.2);
   color: #272727;
+}
+
+@media screen and (max-width: 1030px) {
+  #header {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  #header h1 a {
+    font-size: 2.2rem;
+    margin: 10px;
+  }
+  .headLink {
+    margin: 10px;
+  }
+  .circles {
+    display: none;
+  }
 }

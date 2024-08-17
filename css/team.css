@@ -16,15 +16,6 @@ body {
   background-color: var(--primary-color);
 }
 
-#team-header {
-  height: auto;
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-}
-
 .circle {
   background-color: var(--primary-color);
 }
@@ -88,7 +79,22 @@ main {
   max-width: 130px;
   background-color: var(--extra-color-3);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease-in-out;
 }
+
+.member:hover .member-image {
+  animation: spinY 1s linear;
+}
+
+@keyframes spinY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .member-details {
   margin-left: 20px;
   width: 300px;
@@ -107,7 +113,7 @@ h6 {
   font-size: 1rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1030px) {
   .row {
     grid-template-columns: 1fr;
   }
