@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #8bc34a;
+  --accent-color: #cddc39;
+  --extra-color-1: #ffdecf;
+  --extra-color-2: #e27f86;
+  --extra-color-3: #717ed4;
+  --grey: #4a4a4a;
+  --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+
+/* General styles */
+body {
+  background-color: var(--primary-color);
+}
+
+#team-header {
+  height: auto;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.circle {
+  background-color: var(--primary-color);
+}
+
+main {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.controller {
+  max-width: 30%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.social-links i {
+  font-size: 2.5rem;
+  color: var(--grey);
+  padding-right: 30px;
+}
+
+.social-links i:hover {
+  color: var(--extra-color-3);
+  transform: scale(1.2);
+}
+
+.container {
+  width: 80%;
+  margin-bottom: 40px;
+}
+
+.row {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 2fr);
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--extra-color-1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.member-image {
+  border-radius: 50%;
+  border: 5px solid var(--extra-color-2);
+  max-height: 130px;
+  max-width: 130px;
+  background-color: var(--extra-color-3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.member-details {
+  margin-left: 40px;
+}
+
+.member-details h3,
+h6 {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
