@@ -13,7 +13,7 @@ export default class Scene4 extends Phaser.Scene {
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/fire.png");
-    this.load.image("enemyImage4", "assets/images/car.png");
+    this.load.image("enemyImage4", "assets/images/zelda_bad.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -29,6 +29,8 @@ export default class Scene4 extends Phaser.Scene {
     this.load.audio("moveSound", "assets/sounds/move.wav");
     // Load game over sound
     this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
+    // Load background music
+    this.load.audio("backgroundMusic4", "assets/sounds/zelda_music.mp3");
   }
 
   create() {
@@ -75,7 +77,7 @@ export default class Scene4 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL FROGGER", {
+      .text(this.scale.width / 2, 25, "LEVEL ZELDA", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
@@ -85,6 +87,12 @@ export default class Scene4 extends Phaser.Scene {
     this.collectSound = this.sound.add("collectSound");
     this.collisionSound = this.sound.add("collisionSound");
     this.explosionSound = this.sound.add("explosionSound");
+
+    // Add background music
+    this.backgroundMusic = this.sound.add("backgroundMusic4", {
+      loop: true,
+      volume: 0.2,
+    });
 
     // Win condition and game over flag
     this.winCondition = 12;
@@ -119,6 +127,9 @@ export default class Scene4 extends Phaser.Scene {
   startGame() {
     // Hide the start button
     this.startButton.setVisible(false);
+
+    // Start the background music
+    this.backgroundMusic.play();
 
     // Create fly, obstacle, and enemy timers
     this.flyTimer = this.time.addEvent({
@@ -252,6 +263,7 @@ export default class Scene4 extends Phaser.Scene {
       this.physics.pause();
       this.flyTimer.paused = true; // Stop fly generation
       this.obstacleTimer.paused = true; // Stop obstacle generation
+      this.backgroundMusic.stop();
       this.add
         .text(
           this.scale.width / 2,
@@ -320,6 +332,7 @@ export default class Scene4 extends Phaser.Scene {
     this.flyTimer.paused = true;
     this.obstacleTimer.paused = true;
     this.enemyTimer.paused = true;
+    this.backgroundMusic.stop();
 
     this.sound.play("gameOverSound");
 
