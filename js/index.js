@@ -1,5 +1,6 @@
 'use strict';
 
+// Add a click event listener ul elements to add a sound effect
 document.querySelectorAll('.headLink').forEach(function (link, index) {
   link.addEventListener('click', function (event) {
     event.preventDefault(); // Prevent the default anchor behavior
@@ -9,6 +10,14 @@ document.querySelectorAll('.headLink').forEach(function (link, index) {
     setTimeout(function () {
       window.location.href = link.href;
     }, 600); // Adjust the delay
+  });
+});
+
+// Add a hover event listener to the play a sound effect
+document.querySelectorAll('.member').forEach(function (member) {
+  member.addEventListener('mouseenter', function () {
+    var audio = document.getElementById('hover-sound');
+    audio.play();
   });
 });
 
