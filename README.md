@@ -46,7 +46,7 @@ By forking the repository, we make a copy of the original repository on our GitH
 + Colours were taken from the first image that was used on the wire-frame.
 + Colours were selected using the colors color palette generator.
 
-![Retro Game (2)](https://github.com/user-attachments/assets/590ee948-49be-40b8-be02-db89f40439b9)
+![Space frog](https://github.com/user-attachments/assets/f5f31c15-e676-4b02-8e18-c526e704adab)
 
 
 
@@ -88,11 +88,12 @@ By forking the repository, we make a copy of the original repository on our GitH
      - Level 3: Contra
      - Level 4: Zelda
      - Level 5: Frogger
-   - On each level there is a baddie that relates to the the charcters level
+   - On each level there are baddies that relates to the the characters level that must be avoided.
 
 4. **End Screen**
   
-  
+    - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratutaions"
+    - The player has the option to return to the home page.
 
 
 ### References
