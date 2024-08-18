@@ -16,25 +16,14 @@ export default class Scene5 extends Phaser.Scene {
     this.load.image("rock", "assets/images/rock.png");
     this.load.image("enemyImage5", "assets/images/car.png");
     this.load.image("boss", "assets/images/main_big_bad.png");
-    // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
-
-    // Load the life image
     this.load.image("lifeImage", "assets/images/life.png");
-
-    // Load the moon image
     this.load.image("moon", "assets/images/moon.png");
-
-    // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
-    // Load the obstacle collision sound
     this.load.audio("collisionSound", "assets/sounds/explosion.wav");
-    // Load the enemy collision sound
     this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
     this.load.audio("moveSound", "assets/sounds/move.wav");
-    // Load game over sound
     this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
-    // Load background music
     this.load.audio("backgroundMusic5", "assets/sounds/frogger_theme.mp3");
   }
 
@@ -68,6 +57,7 @@ export default class Scene5 extends Phaser.Scene {
       fontSize: "18px",
       fill: "#fff",
     });
+
     // Initialize lives
     this.lives = 4;
     this.livesImages = [];
@@ -111,17 +101,8 @@ export default class Scene5 extends Phaser.Scene {
     // Occupied positions
     this.occupiedPositions = [];
 
-    // Create the Boss (only one instance)
-    this.boss = new Boss(this, this.scale.width / 2, 100, 2, "boss");
-
-    // Set collision and overlap for the Boss
-    this.physics.add.collider(
-      this.player.sprite,
-      this.boss.sprite,
-      this.hitBoss, // Use a specific method for hitting the boss
-      null,
-      this
-    );
+    // Boss (initially disabled and not created)
+    this.boss = null;
   }
 
   createStarBackground() {
@@ -151,6 +132,18 @@ export default class Scene5 extends Phaser.Scene {
 
     // Start the background music
     this.backgroundMusic.play();
+
+    // Create the Boss instance
+    this.boss = new Boss(this, this.scale.width / 2, 100, 2, "boss");
+
+    // Set collision and overlap for the Boss
+    this.physics.add.collider(
+      this.player.sprite,
+      this.boss.sprite,
+      this.hitBoss, // Use a specific method for hitting the boss
+      null,
+      this
+    );
 
     // Create fly, obstacle, and enemy timers
     this.flyTimer = this.time.addEvent({
