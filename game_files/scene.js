@@ -1,41 +1,43 @@
-import Player from './player.js';
-import Fly from './fly.js';
-import Obstacle from './obstacle.js';
-import Enemy from './enemy.js';
+import Player from "./player.js";
+import Fly from "./fly.js";
+import Obstacle from "./obstacle.js";
+import Enemy from "./enemy.js";
 
 export default class Scene1 extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene1' });
+    super({ key: "Scene1" });
   }
 
   preload() {
     // Load assets
-    this.load.image('frog', 'assets/images/frogShip.png');
-    this.load.image('fly', 'assets/images/fly.png');
-    this.load.image('rock', 'assets/images/rock50-50.png');
-    this.load.image('enemyImage', 'assets/images/mario.png');
+    this.load.image("frog", "assets/images/frogShip.png");
+    this.load.image("fly", "assets/images/fly.png");
+    this.load.image("rock", "assets/images/rock50-50.png");
+    this.load.image("enemyImage", "assets/images/mario.png");
     // Load the play button image
-    this.load.image('startButton', 'assets/images/play.png');
+    this.load.image("startButton", "assets/images/play.png");
 
     // Load the life image
-    this.load.image('lifeImage', 'assets/images/life.png');
+    this.load.image("lifeImage", "assets/images/life.png");
 
-    this.load.image('upButton', 'assets/images/arrowup.png');
-    this.load.image('downButton', 'assets/images/arrowdown.png');
-    this.load.image('leftButton', 'assets/images/arrowright.png');
-    this.load.image('rightButton', 'assets/images/arrowleft.png');
+    this.load.image("upButton", "assets/images/arrowup.png");
+    this.load.image("downButton", "assets/images/arrowdown.png");
+    this.load.image("leftButton", "assets/images/arrowright.png");
+    this.load.image("rightButton", "assets/images/arrowleft.png");
+
+    this.load.image("toggleButton", "assets/images/team_images/controler.png");
 
     // Load the collect sound
-    this.load.audio('collectSound', 'assets/sounds/pickupCoin.wav');
+    this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
     // Load the obstacle collision sound
-    this.load.audio('collisionSound', 'assets/sounds/explosion.wav');
+    this.load.audio("collisionSound", "assets/sounds/explosion.wav");
     // Load the enemy collision sound
-    this.load.audio('explosionSound', 'assets/sounds/hardexplosion.wav');
-    this.load.audio('moveSound', 'assets/sounds/move.wav');
+    this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
+    this.load.audio("moveSound", "assets/sounds/move.wav");
     // Load game over sound
-    this.load.audio('gameOverSound', 'assets/sounds/game-over.wav');
+    this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
     // Load background music
-    this.load.audio('backgroundMusic', 'assets/sounds/mario_bros_theme.mp3');
+    this.load.audio("backgroundMusic", "assets/sounds/mario_bros_theme.mp3");
   }
 
   create() {
@@ -56,17 +58,17 @@ export default class Scene1 extends Phaser.Scene {
 
     // Create a start button
     this.startButton = this.add
-      .sprite(this.scale.width / 2, this.scale.height / 2, 'startButton')
+      .sprite(this.scale.width / 2, this.scale.height / 2, "startButton")
       .setInteractive()
       .setDisplaySize(100, 100) // Set the width and height here
-      .on('pointerdown', () => this.startGame());
+      .on("pointerdown", () => this.startGame());
 
     // Initialize score
     this.score = 0;
-    this.scoreImage = this.add.image(16, 16, 'fly').setDisplaySize(40, 40); // Fly image
+    this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40); // Fly image
     this.scoreText = this.add.text(40, 10, `0`, {
-      fontSize: '18px',
-      fill: '#fff',
+      fontSize: "18px",
+      fill: "#fff",
     });
     // Initialize lives
     this.lives = 3;
@@ -75,26 +77,26 @@ export default class Scene1 extends Phaser.Scene {
     // Display life images
     for (let i = 0; i < this.lives; i++) {
       const lifeImage = this.add
-        .image(16 + i * 40, 50, 'lifeImage')
+        .image(16 + i * 40, 50, "lifeImage")
         .setScale(2);
       this.livesImages.push(lifeImage);
     }
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, 'LEVEL MARIO', {
+      .text(this.scale.width / 2, 25, "LEVEL MARIO", {
         font: "30px 'Pixelify Sans'",
-        fill: '#fff',
+        fill: "#fff",
       })
       .setOrigin(0.5);
 
     // Load sound effects
-    this.collectSound = this.sound.add('collectSound');
-    this.collisionSound = this.sound.add('collisionSound');
-    this.explosionSound = this.sound.add('explosionSound');
+    this.collectSound = this.sound.add("collectSound");
+    this.collisionSound = this.sound.add("collisionSound");
+    this.explosionSound = this.sound.add("explosionSound");
 
     // Add background music
-    this.backgroundMusic = this.sound.add('backgroundMusic', {
+    this.backgroundMusic = this.sound.add("backgroundMusic", {
       loop: true,
       volume: 0.2,
     });
@@ -202,7 +204,7 @@ export default class Scene1 extends Phaser.Scene {
     this.flies.add(fly.sprite);
     this.occupiedPositions.push({ x: flyX, y: flyY });
 
-    console.log('Fly added at:', flyX, flyY);
+    console.log("Fly added at:", flyX, flyY);
   }
 
   addObstacle() {
@@ -223,7 +225,7 @@ export default class Scene1 extends Phaser.Scene {
     this.obstacles.add(obstacle.sprite);
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
 
-    console.log('Obstacle added at:', obstacleX, obstacleY); // Debugging
+    console.log("Obstacle added at:", obstacleX, obstacleY); // Debugging
   }
 
   addEnemy() {
@@ -240,12 +242,12 @@ export default class Scene1 extends Phaser.Scene {
       enemyX,
       enemyY,
       Phaser.Math.Between(100, 200),
-      'enemyImage'
+      "enemyImage"
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
 
-    console.log('Enemy added at:', enemyX, enemyY); // Debugging
+    console.log("Enemy added at:", enemyX, enemyY); // Debugging
   }
 
   collectFly(player, fly) {
@@ -272,17 +274,17 @@ export default class Scene1 extends Phaser.Scene {
         .text(
           this.scale.width / 2,
           this.scale.height / 2,
-          'You Win! Moving to Next Level...',
+          "You Win! Moving to Next Level...",
           {
             font: "30px 'Pixelify Sans'",
-            fill: '#fff',
+            fill: "#fff",
           }
         )
         .setOrigin(0.5);
 
       // Transition to Scene2 after a short delay
       this.time.delayedCall(2000, () => {
-        this.scene.start('Scene2');
+        this.scene.start("Scene2");
       });
 
       this.gameOver = true;
@@ -338,25 +340,25 @@ export default class Scene1 extends Phaser.Scene {
     this.enemyTimer.paused = true;
     this.backgroundMusic.stop();
 
-    this.sound.play('gameOverSound');
+    this.sound.play("gameOverSound");
 
     player.setTint(0xff0000);
     this.add
       .text(
         this.scale.width / 2,
         this.scale.height / 2,
-        'Game Over\nPress SPACE to Restart',
+        "Game Over\nPress SPACE to Restart",
         {
           font: "30px 'Pixelify Sans'",
-          fill: '#fff',
-          align: 'center',
+          fill: "#fff",
+          align: "center",
         }
       )
       .setOrigin(0.5);
 
     this.gameOver = true;
 
-    this.input.keyboard.once('keydown-SPACE', () => {
+    this.input.keyboard.once("keydown-SPACE", () => {
       this.scene.restart();
     });
   }
