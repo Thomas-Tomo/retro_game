@@ -1,5 +1,17 @@
 'use strict';
 
+document.querySelectorAll('.headLink').forEach(function (link, index) {
+  link.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    var audio = document.getElementById('click-sound-' + (index + 1));
+    audio.play();
+    // A delay before navigating to the href
+    setTimeout(function () {
+      window.location.href = link.href;
+    }, 600); // Adjust the delay
+  });
+});
+
 document.addEventListener('keydown', function (event) {
   switch (event.key) {
     case 'ArrowUp':
@@ -67,8 +79,3 @@ function startGame() {
     game_area.classList.add('pixelate');
   }
 }
-// sound effect for site load
-window.addEventListener('load', function () {
-  const audio = document.getElementById('load-sound');
-  audio.play();
-});
