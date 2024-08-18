@@ -20,6 +20,9 @@ export default class Scene5 extends Phaser.Scene {
     // Load the life image
     this.load.image("lifeImage", "assets/images/life.png");
 
+    // Load the moon image
+    this.load.image("moon", "assets/images/moon.png");
+
     // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
     // Load the obstacle collision sound
@@ -110,6 +113,10 @@ export default class Scene5 extends Phaser.Scene {
   createStarBackground() {
     const starCount = 100; // Number of stars
 
+    // Add the moon image to the scene at a specific position
+    this.moon = this.add.image(this.scale.width - 150, 150, "moon");
+    this.moon.setScale(0.5);
+
     // Create a graphics object
     this.starsGraphics = this.add.graphics();
 
@@ -119,7 +126,7 @@ export default class Scene5 extends Phaser.Scene {
       const y = Phaser.Math.Between(0, this.scale.height);
 
       // Draw a star
-      this.starsGraphics.fillStyle(0x00008b, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
+      this.starsGraphics.fillStyle(0x90ee90, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
       this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
     }
   }
