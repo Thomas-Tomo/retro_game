@@ -2,6 +2,7 @@ import Player from "./player.js";
 import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
 import Enemy from "./enemy.js";
+import Boss from "./boss.js"; // Import the Boss class
 
 export default class Scene5 extends Phaser.Scene {
   constructor() {
@@ -14,11 +15,15 @@ export default class Scene5 extends Phaser.Scene {
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/fire.png");
     this.load.image("enemyImage5", "assets/images/car.png");
+    this.load.image("boss", "assets/images/main_big_bad.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
     // Load the life image
     this.load.image("lifeImage", "assets/images/life.png");
+
+    // Load the moon image
+    this.load.image("moon", "assets/images/moon.png");
 
     // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
@@ -105,10 +110,26 @@ export default class Scene5 extends Phaser.Scene {
 
     // Occupied positions
     this.occupiedPositions = [];
+
+    // Create the Boss (only one instance)
+    this.boss = new Boss(this, this.scale.width / 2, 100, 2, "boss");
+
+    // Set collision and overlap for the Boss
+    this.physics.add.collider(
+      this.player.sprite,
+      this.boss.sprite,
+      this.hitBoss, // Use a specific method for hitting the boss
+      null,
+      this
+    );
   }
 
   createStarBackground() {
     const starCount = 100; // Number of stars
+
+    // Add the moon image to the scene at a specific position
+    this.moon = this.add.image(this.scale.width - 150, 150, "moon");
+    this.moon.setScale(0.5);
 
     // Create a graphics object
     this.starsGraphics = this.add.graphics();
@@ -119,7 +140,7 @@ export default class Scene5 extends Phaser.Scene {
       const y = Phaser.Math.Between(0, this.scale.height);
 
       // Draw a star
-      this.starsGraphics.fillStyle(0x00008b, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
+      this.starsGraphics.fillStyle(0x90ee90, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
       this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
     }
   }
@@ -355,6 +376,30 @@ export default class Scene5 extends Phaser.Scene {
     this.input.keyboard.once("keydown-SPACE", () => {
       this.scene.start("Scene4");
     });
+  }
+
+  hitBoss(player, boss) {
+    if (this.gameOver || player.hit) {
+      return;
+    }
+
+    this.explosionSound.play();
+    player.hit = true;
+
+    // Reduce the player's lives or trigger game over based on your game's logic
+    this.lives -= 2; // Maybe the boss does more damage
+
+    this.updateLivesDisplay();
+
+    if (this.lives <= 0) {
+      this.triggerGameOver(player);
+    } else {
+      this.player.sprite.setTint(0xff0000);
+      this.time.delayedCall(1000, () => {
+        this.player.sprite.clearTint();
+        player.hit = false;
+      });
+    }
   }
 
   update() {
