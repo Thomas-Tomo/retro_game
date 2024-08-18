@@ -13,7 +13,7 @@ export default class Scene5 extends Phaser.Scene {
     // Load assets
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
-    this.load.image("rock", "assets/images/fire.png");
+    this.load.image("rock", "assets/images/rock.png");
     this.load.image("enemyImage5", "assets/images/car.png");
     this.load.image("boss", "assets/images/main_big_bad.png");
     // Load the play button image
@@ -100,7 +100,7 @@ export default class Scene5 extends Phaser.Scene {
     });
 
     // Win condition and game over flag
-    this.winCondition = 12;
+    this.winCondition = 15;
     this.gameOver = false;
 
     // Timers for generating flies and obstacles (initially disabled)
@@ -161,14 +161,14 @@ export default class Scene5 extends Phaser.Scene {
     });
 
     this.obstacleTimer = this.time.addEvent({
-      delay: 2500,
+      delay: 1500,
       callback: this.addObstacle,
       callbackScope: this,
       loop: true,
     });
 
     this.enemyTimer = this.time.addEvent({
-      delay: 6000, // Enemies appear less frequently
+      delay: 3800, // Enemies appear less frequently
       callback: this.addEnemy,
       callbackScope: this,
       loop: true,
