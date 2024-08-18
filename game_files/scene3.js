@@ -34,6 +34,7 @@ export default class Scene3 extends Phaser.Scene {
   }
 
   create() {
+    this.gameStarted = false;
     // Create star background
     this.createStarBackground();
 
@@ -95,8 +96,9 @@ export default class Scene3 extends Phaser.Scene {
     });
 
     // Win condition and game over flag
-    this.winCondition = 8;
+    this.winCondition = 1;
     this.gameOver = false;
+    this.paused = false;
 
     // Timers for generating flies and obstacles (initially disabled)
     this.flyTimer = null;
@@ -105,6 +107,8 @@ export default class Scene3 extends Phaser.Scene {
 
     // Occupied positions
     this.occupiedPositions = [];
+    // Input event listeners
+    this.input.keyboard.on("keydown-P", () => this.togglePause()); // 'P' for pausing
   }
 
   createStarBackground() {
@@ -176,6 +180,54 @@ export default class Scene3 extends Phaser.Scene {
       null,
       this
     );
+    this.gameStarted = true;
+  }
+
+  togglePause() {
+    if (!this.gameStarted || this.gameOver) return; // Ensure game has started
+
+    if (this.paused) {
+      // Resume the game
+      this.physics.resume();
+      if (this.flyTimer) this.flyTimer.paused = false;
+      if (this.obstacleTimer) this.obstacleTimer.paused = false;
+      if (this.enemyTimer) this.enemyTimer.paused = false;
+      this.backgroundMusic.play();
+
+      // Resume enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").resume();
+      });
+
+      if (this.pauseText) this.pauseText.setVisible(false);
+      this.paused = false;
+    } else {
+      // Pause the game
+      this.physics.pause();
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
+      this.backgroundMusic.pause();
+
+      // Pause enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").pause();
+      });
+
+      this.pauseText = this.add
+        .text(
+          this.scale.width / 2,
+          this.scale.height / 2,
+          "Game Paused\nPress P to Resume",
+          {
+            font: "30px 'Pixelify Sans'",
+            fill: "#fff",
+            align: "center",
+          }
+        )
+        .setOrigin(0.5);
+      this.paused = true;
+    }
   }
 
   isPositionOccupied(x, y, tolerance = 30) {
@@ -235,6 +287,7 @@ export default class Scene3 extends Phaser.Scene {
       "enemyImage3"
     );
     this.enemies.add(enemy.sprite);
+    enemy.sprite.setData("instance", enemy);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
   }
 
@@ -255,8 +308,9 @@ export default class Scene3 extends Phaser.Scene {
     // Check win condition
     if (this.score >= this.winCondition) {
       this.physics.pause();
-      this.flyTimer.paused = true; // Stop fly generation
-      this.obstacleTimer.paused = true; // Stop obstacle generation
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
       this.backgroundMusic.stop();
       this.add
         .text(
@@ -323,9 +377,9 @@ export default class Scene3 extends Phaser.Scene {
 
   triggerGameOver(player) {
     this.physics.pause();
-    this.flyTimer.paused = true;
-    this.obstacleTimer.paused = true;
-    this.enemyTimer.paused = true;
+    if (this.flyTimer) this.flyTimer.paused = true;
+    if (this.obstacleTimer) this.obstacleTimer.paused = true;
+    if (this.enemyTimer) this.enemyTimer.paused = true;
     this.backgroundMusic.stop();
 
     this.sound.play("gameOverSound");
@@ -363,7 +417,7 @@ export default class Scene3 extends Phaser.Scene {
   }
 
   update() {
-    if (!this.gameOver) {
+    if (!this.gameOver && !this.paused) {
       this.player.update();
 
       if (this.obstacles) {

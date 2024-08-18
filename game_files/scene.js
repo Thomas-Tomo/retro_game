@@ -9,72 +9,53 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   preload() {
-    // Load assets
+    // Load assets (same as before)
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/rock50-50.png");
     this.load.image("enemyImage", "assets/images/mario.png");
-    // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
-
-    // Load the life image
     this.load.image("lifeImage", "assets/images/life.png");
-
     this.load.image("upButton", "assets/images/arrowup.png");
     this.load.image("downButton", "assets/images/arrowdown.png");
     this.load.image("leftButton", "assets/images/arrowright.png");
     this.load.image("rightButton", "assets/images/arrowleft.png");
-
     this.load.image("toggleButton", "assets/images/team_images/controler.png");
-
-    // Load the collect sound
     this.load.audio("collectSound", "assets/sounds/pickupCoin.wav");
-    // Load the obstacle collision sound
     this.load.audio("collisionSound", "assets/sounds/explosion.wav");
-    // Load the enemy collision sound
     this.load.audio("explosionSound", "assets/sounds/hardexplosion.wav");
     this.load.audio("moveSound", "assets/sounds/move.wav");
-    // Load game over sound
     this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
-    // Load background music
     this.load.audio("backgroundMusic", "assets/sounds/mario_bros_theme.mp3");
   }
 
   create() {
-    // Create star background
-    this.createStarBackground();
+    this.gameStarted = false;
 
-    // Initialize player
+    this.createStarBackground();
     this.player = new Player(
       this,
       this.scale.width / 2,
       this.scale.height - 50
     );
-
-    // Initialize groups for flies, obstacles, and enemies
     this.flies = this.physics.add.group();
     this.obstacles = this.physics.add.group();
     this.enemies = this.physics.add.group();
-
-    // Create a start button
     this.startButton = this.add
       .sprite(this.scale.width / 2, this.scale.height / 2, "startButton")
       .setInteractive()
-      .setDisplaySize(100, 100) // Set the width and height here
+      .setDisplaySize(100, 100)
       .on("pointerdown", () => this.startGame());
 
-    // Initialize score
     this.score = 0;
-    this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40); // Fly image
+    this.scoreImage = this.add.image(16, 16, "fly").setDisplaySize(40, 40);
     this.scoreText = this.add.text(40, 10, `0`, {
       fontSize: "18px",
       fill: "#fff",
     });
-    // Initialize lives
+
     this.lives = 3;
     this.livesImages = [];
-
-    // Display life images
     for (let i = 0; i < this.lives; i++) {
       const lifeImage = this.add
         .image(16 + i * 40, 50, "lifeImage")
@@ -82,7 +63,6 @@ export default class Scene1 extends Phaser.Scene {
       this.livesImages.push(lifeImage);
     }
 
-    // Initialize level text
     this.levelText = this.add
       .text(this.scale.width / 2, 25, "LEVEL MARIO", {
         font: "30px 'Pixelify Sans'",
@@ -90,55 +70,41 @@ export default class Scene1 extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    // Load sound effects
     this.collectSound = this.sound.add("collectSound");
     this.collisionSound = this.sound.add("collisionSound");
     this.explosionSound = this.sound.add("explosionSound");
-
-    // Add background music
     this.backgroundMusic = this.sound.add("backgroundMusic", {
       loop: true,
       volume: 0.2,
     });
 
-    // Win condition and game over flag
-    this.winCondition = 3;
+    this.winCondition = 1;
     this.gameOver = false;
-
-    // Timers for generating flies and obstacles (initially disabled)
+    this.paused = false; // Add paused state
     this.flyTimer = null;
     this.obstacleTimer = null;
     this.enemyTimer = null;
-
-    // Occupied positions
     this.occupiedPositions = [];
+
+    // Input event listeners
+    this.input.keyboard.on("keydown-P", () => this.togglePause()); // 'P' for pausing
   }
 
   createStarBackground() {
-    const starCount = 100; // Number of stars
-
-    // Create a graphics object
+    const starCount = 100;
     this.starsGraphics = this.add.graphics();
-
     for (let i = 0; i < starCount; i++) {
-      // Generate random position for each star
       const x = Phaser.Math.Between(0, this.scale.width);
       const y = Phaser.Math.Between(0, this.scale.height);
-
-      // Draw a star
-      this.starsGraphics.fillStyle(0xffffff, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
-      this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
+      this.starsGraphics.fillStyle(0xffffff, Phaser.Math.FloatBetween(0.5, 1));
+      this.starsGraphics.fillCircle(x, y, 2);
     }
   }
 
   startGame() {
-    // Hide the start button
     this.startButton.setVisible(false);
-
-    // Start the background music
     this.backgroundMusic.play();
 
-    // Create fly, obstacle, and enemy timers
     this.flyTimer = this.time.addEvent({
       delay: 3000,
       callback: this.addFly,
@@ -154,13 +120,12 @@ export default class Scene1 extends Phaser.Scene {
     });
 
     this.enemyTimer = this.time.addEvent({
-      delay: 5000, // Enemies appear less frequently
+      delay: 5000,
       callback: this.addEnemy,
       callbackScope: this,
       loop: true,
     });
 
-    // Set collision and overlap
     this.physics.add.overlap(
       this.player.sprite,
       this.flies,
@@ -175,7 +140,6 @@ export default class Scene1 extends Phaser.Scene {
       null,
       this
     );
-
     this.physics.add.collider(
       this.player.sprite,
       this.enemies,
@@ -183,6 +147,54 @@ export default class Scene1 extends Phaser.Scene {
       null,
       this
     );
+    this.gameStarted = true;
+  }
+
+  togglePause() {
+    if (!this.gameStarted || this.gameOver) return; // Ensure game has started
+
+    if (this.paused) {
+      // Resume the game
+      this.physics.resume();
+      if (this.flyTimer) this.flyTimer.paused = false;
+      if (this.obstacleTimer) this.obstacleTimer.paused = false;
+      if (this.enemyTimer) this.enemyTimer.paused = false;
+      this.backgroundMusic.play();
+
+      // Resume enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").resume();
+      });
+
+      if (this.pauseText) this.pauseText.setVisible(false);
+      this.paused = false;
+    } else {
+      // Pause the game
+      this.physics.pause();
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
+      this.backgroundMusic.pause();
+
+      // Pause enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").pause();
+      });
+
+      this.pauseText = this.add
+        .text(
+          this.scale.width / 2,
+          this.scale.height / 2,
+          "Game Paused\nPress P to Resume",
+          {
+            font: "30px 'Pixelify Sans'",
+            fill: "#fff",
+            align: "center",
+          }
+        )
+        .setOrigin(0.5);
+      this.paused = true;
+    }
   }
 
   isPositionOccupied(x, y, tolerance = 30) {
@@ -192,28 +204,22 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   addFly() {
-    // Find a valid position for the fly
     let flyX, flyY;
     do {
       flyX = Phaser.Math.Between(10, this.scale.width - 10);
       flyY = Phaser.Math.Between(50, this.scale.height - 50);
     } while (this.isPositionOccupied(flyX, flyY));
-
-    // Create and add the fly to the game
     const fly = new Fly(this, flyX, flyY);
     this.flies.add(fly.sprite);
     this.occupiedPositions.push({ x: flyX, y: flyY });
   }
 
   addObstacle() {
-    // Find a valid position for the obstacle
     let obstacleX, obstacleY;
     do {
       obstacleX = Phaser.Math.Between(0, this.scale.width - 50);
       obstacleY = Phaser.Math.Between(100, this.scale.height - 100);
     } while (this.isPositionOccupied(obstacleX, obstacleY));
-
-    // Create and add the obstacle at the random position
     const obstacle = new Obstacle(
       this,
       obstacleX,
@@ -225,14 +231,11 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   addEnemy() {
-    // Find a valid position for the enemy
     let enemyX, enemyY;
     do {
       enemyX = Phaser.Math.Between(0, this.scale.width - 50);
       enemyY = Phaser.Math.Between(100, this.scale.height - 100);
     } while (this.isPositionOccupied(enemyX, enemyY));
-
-    // Create and add the enemy at the random position
     const enemy = new Enemy(
       this,
       enemyX,
@@ -241,28 +244,24 @@ export default class Scene1 extends Phaser.Scene {
       "enemyImage"
     );
     this.enemies.add(enemy.sprite);
+    enemy.sprite.setData("instance", enemy);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
   }
 
   collectFly(player, fly) {
-    // Play the collect sound
     this.collectSound.play();
-
-    // Handle fly collection
     fly.destroy();
     this.score += 1;
     this.scoreText.setText(`${this.score}/${this.winCondition}`);
-
-    // Remove the fly's position from occupied positions
     this.occupiedPositions = this.occupiedPositions.filter(
       (pos) => pos.x !== fly.x || pos.y !== fly.y
     );
 
-    // Check win condition
     if (this.score >= this.winCondition) {
       this.physics.pause();
-      this.flyTimer.paused = true; // Stop fly generation
-      this.obstacleTimer.paused = true; // Stop obstacle generation
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
       this.backgroundMusic.stop();
       this.add
         .text(
@@ -276,7 +275,6 @@ export default class Scene1 extends Phaser.Scene {
         )
         .setOrigin(0.5);
 
-      // Transition to Scene2 after a short delay
       this.time.delayedCall(2000, () => {
         this.scene.start("Scene2");
       });
@@ -292,13 +290,9 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   hitObstacle(player, obstacle) {
-    if (this.gameOver || player.hit) {
-      return;
-    }
-
+    if (this.gameOver || player.hit) return;
     this.collisionSound.play();
     player.hit = true;
-
     this.lives -= 1;
     this.updateLivesDisplay();
 
@@ -314,27 +308,22 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   hitEnemy(player, enemy) {
-    if (this.gameOver || player.hit) {
-      return;
-    }
-
+    if (this.gameOver || player.hit) return;
     this.explosionSound.play();
     player.hit = true;
-
     this.lives = 0;
     this.updateLivesDisplay();
-
     this.triggerGameOver(player);
   }
 
   triggerGameOver(player) {
     this.physics.pause();
-    this.flyTimer.paused = true;
-    this.obstacleTimer.paused = true;
-    this.enemyTimer.paused = true;
+    if (this.flyTimer) this.flyTimer.paused = true;
+    if (this.obstacleTimer) this.obstacleTimer.paused = true;
+    if (this.enemyTimer) this.enemyTimer.paused = true;
     this.backgroundMusic.stop();
-
     this.sound.play("gameOverSound");
+    player.setTint(0xff0000);
 
     this.add
       .text(
@@ -351,26 +340,22 @@ export default class Scene1 extends Phaser.Scene {
 
     this.gameOver = true;
 
-    // Restart game when SPACE is pressed
     this.input.keyboard.once("keydown-SPACE", () => {
       this.restartGame();
     });
 
-    // Restart game when pointer is pressed anywhere on the screen
     this.input.once("pointerdown", () => {
       this.restartGame();
     });
   }
 
-  // Helper method to restart the game
   restartGame() {
     this.scene.restart();
   }
 
   update() {
-    if (!this.gameOver) {
+    if (!this.gameOver && !this.paused) {
       this.player.update();
-
       if (this.obstacles) {
         this.obstacles.children.iterate((obstacle) => {
           if (obstacle && obstacle.x < -obstacle.width) {
