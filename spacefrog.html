@@ -1,128 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SPACE FROG - Game</title>
-    <!-- CSS paths are relative to the current file -->
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="64x64"
-      href="assets/favicon/main_big_bad_64x64.ico">
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/favicon/main_big_bad_32x32.ico">
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/favicon/main_big_bad_16x16.ico">
-<!-- Font Awesome -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPACE FROG - Game</title>
+  <!-- CSS paths are relative to the current file -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="64x64" href="assets/favicon/main_big_bad_64x64.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/main_big_bad_32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/main_big_bad_16x16.ico">
+  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/712db90352.js" crossorigin="anonymous"></script>
-  <body>
-    <div class="container">
-      <header id="header">
-        <div class="circles">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-        <div class="title">
-          <h1><a id="spacefrog" href="/index.html">space frog</a></h1>
-          <nav>
-            <ul>
-              <li>
-                <a class="headLink" id="links-1" href="#play-btn">Game</a>
-                <audio
-                  id="click-sound-1"
-                  src="assets/sounds/onebeep.mp3"></audio>
-              </li>
-              <li>
-                <a class="headLink" id="links-2" href="/team.html">Crew</a>
-                <audio
-                  id="click-sound-2"
-                  src="assets/sounds/onebeep.mp3"></audio>
-              </li>
-              <li>
-                <a class="headLink" id="links-3" href="#footer">github</a>
-                <audio
-                  id="click-sound-3"
-                  src="assets/sounds/onebeep.mp3"></audio>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="circles">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-      </header>
+</head>
 
-      <main>
-        <section>
-          <div id="game-area">
-            <div id="game-container"></div>
-          </div>
+<body>
+  <div class="container">
+    <header id="header">
+      <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="title">
+        <h1><a id="spacefrog" href="/index.html">space frog</a></h1>
+        <nav>
+          <ul>
+            <li>
+              <a class="headLink" id="links-1" href="#play-btn">Game</a>
+              <audio id="click-sound-1" src="assets/sounds/onebeep.mp3"></audio>
+            </li>
+            <li>
+              <a class="headLink" id="links-2" href="/team.html">Crew</a>
+              <audio id="click-sound-2" src="assets/sounds/onebeep.mp3"></audio>
+            </li>
+            <li>
+              <a class="headLink" id="links-3" href="#footer">github</a>
+              <audio id="click-sound-3" src="assets/sounds/onebeep.mp3"></audio>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    </header>
 
-          <div class="angles">
-            <button id="play-btn" onclick="window.location.href='index.html'">
-              Go Back
-            </button>
-            <div id="game-pad">
-              <div class="select-start">
-                <div class="button start">Start</div>
+    <main>
+      <section>
+        <div id="game-area">
+          <div id="game-container"></div>
+          <div id="game-pad">
+            <!-- <div class="select-start">
+              <div class="button start">Start</div>
+            </div> -->
+            <div class="d-pad">
+              <div id="up" class="up">
+                <i class="fa-solid fa-caret-up"></i>
               </div>
-              <div class="d-pad">
-                <div id="up" class="up">
-                  <i class="fa-solid fa-caret-up"></i>
-                </div>
-                <div id="down" class="down">
-                  <i class="fa-solid fa-caret-down"></i>
-                </div>
-                <div id="left" class="left">
-                  <i class="fa-solid fa-caret-left"></i>
-                </div>
-                <div id="right" class="right">
-                  <i class="fa-solid fa-caret-right"></i>
-                </div>
+              <div id="down" class="down">
+                <i class="fa-solid fa-caret-down"></i>
               </div>
-              <div class="select-start">
-                <div class="button reset">Reset</div>
+              <div id="left" class="left">
+                <i class="fa-solid fa-caret-left"></i>
+              </div>
+              <div id="right" class="right">
+                <i class="fa-solid fa-caret-right"></i>
               </div>
             </div>
+            <!-- <div class="select-start">
+              <div class="button reset">Reset</div>
+            </div> -->
           </div>
-          <h3 id="scrollHead" style="display: none">For screen</h3>
-        </section>
-      </main>
-
-      <footer id="footer">
-        <p>&copy; 2024 Retro Game. All rights reserved to...</p>
-        <h4 class="cats">some cool cats</h4>
-        <div class="footer-links">
-          <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank">
-            <i class="fa-brands fa-github-alt"></i>
-          </a>
         </div>
-      </footer>
-    </div>
 
-    <!-- Include Phaser from a CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+        <div class="angles">
+          <button id="play-btn" onclick="window.location.href='index.html'">
+            Go Back
+          </button>
 
-    <!-- Your main.js script as a module -->
-    <script type="module" src="game_files/main.js"></script>
-    <script src="js/index.js"></script>
-  </body>
+        </div>
+        <h3 id="scrollHead" style="display: none">For screen</h3>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>&copy; 2024 Retro Game. All rights reserved to...</p>
+      <h4 class="cats">some cool cats</h4>
+      <div class="footer-links">
+        <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank">
+          <i class="fa-brands fa-github-alt"></i>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Include Phaser from a CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+
+  <!-- Your main.js script as a module -->
+  <script type="module" src="game_files/main.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
 </html>
