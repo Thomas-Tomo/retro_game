@@ -147,7 +147,7 @@ export default class Scene3 extends Phaser.Scene {
     });
 
     this.enemyTimer = this.time.addEvent({
-      delay: 4800, // Enemies appear less frequently
+      delay: 4200, // Enemies appear less frequently
       callback: this.addEnemy,
       callbackScope: this,
       loop: true,
