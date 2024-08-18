@@ -254,3 +254,13 @@ section {
 .reset:active {
   transform: scale(0.9);
 }
+
+@media screen and (max-width: 1030px) {
+  .game-info {
+    width: 95%;
+    font-size: 95%;
+  }
+  .game-info {
+    font-size: 85%;
+  }
+}
