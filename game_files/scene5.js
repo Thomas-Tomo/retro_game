@@ -3,9 +3,9 @@ import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
 import Enemy from "./enemy.js";
 
-export default class Scene4 extends Phaser.Scene {
+export default class Scene5 extends Phaser.Scene {
   constructor() {
-    super({ key: "Scene4" });
+    super({ key: "Scene5" });
   }
 
   preload() {
@@ -13,7 +13,7 @@ export default class Scene4 extends Phaser.Scene {
     this.load.image("frog", "assets/images/frogShip.png");
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/fire.png");
-    this.load.image("enemyImage4", "assets/images/zelda_bad.png");
+    this.load.image("enemyImage5", "assets/images/car.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -30,7 +30,7 @@ export default class Scene4 extends Phaser.Scene {
     // Load game over sound
     this.load.audio("gameOverSound", "assets/sounds/game-over.wav");
     // Load background music
-    this.load.audio("backgroundMusic4", "assets/sounds/zelda_music.mp3");
+    this.load.audio("backgroundMusic5", "assets/sounds/frogger_theme.mp3");
   }
 
   create() {
@@ -64,7 +64,7 @@ export default class Scene4 extends Phaser.Scene {
       fill: "#fff",
     });
     // Initialize lives
-    this.lives = 3;
+    this.lives = 4;
     this.livesImages = [];
 
     // Display life images
@@ -77,7 +77,7 @@ export default class Scene4 extends Phaser.Scene {
 
     // Initialize level text
     this.levelText = this.add
-      .text(this.scale.width / 2, 25, "LEVEL ZELDA", {
+      .text(this.scale.width / 2, 25, "BOSS LEVEL FROGGER", {
         font: "30px 'Pixelify Sans'",
         fill: "#fff",
       })
@@ -89,7 +89,7 @@ export default class Scene4 extends Phaser.Scene {
     this.explosionSound = this.sound.add("explosionSound");
 
     // Add background music
-    this.backgroundMusic = this.sound.add("backgroundMusic4", {
+    this.backgroundMusic = this.sound.add("backgroundMusic5", {
       loop: true,
       volume: 0.2,
     });
@@ -119,7 +119,7 @@ export default class Scene4 extends Phaser.Scene {
       const y = Phaser.Math.Between(0, this.scale.height);
 
       // Draw a star
-      this.starsGraphics.fillStyle(0x0000CD, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
+      this.starsGraphics.fillStyle(0x00008b, Phaser.Math.FloatBetween(0.5, 1)); // White color with random alpha
       this.starsGraphics.fillCircle(x, y, 2); // Draw circle representing a star
     }
   }
@@ -133,21 +133,21 @@ export default class Scene4 extends Phaser.Scene {
 
     // Create fly, obstacle, and enemy timers
     this.flyTimer = this.time.addEvent({
-      delay: 2800,
+      delay: 1500,
       callback: this.addFly,
       callbackScope: this,
       loop: true,
     });
 
     this.obstacleTimer = this.time.addEvent({
-      delay: 1800,
+      delay: 2500,
       callback: this.addObstacle,
       callbackScope: this,
       loop: true,
     });
 
     this.enemyTimer = this.time.addEvent({
-      delay: 4000, // Enemies appear less frequently
+      delay: 6000, // Enemies appear less frequently
       callback: this.addEnemy,
       callbackScope: this,
       loop: true,
@@ -214,7 +214,7 @@ export default class Scene4 extends Phaser.Scene {
       obstacleX,
       obstacleY,
       Phaser.Math.Between(100, 200),
-      "enemyImage4"
+      "enemyImage5"
     );
     this.obstacles.add(obstacle.sprite);
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
@@ -236,7 +236,7 @@ export default class Scene4 extends Phaser.Scene {
       enemyX,
       enemyY,
       Phaser.Math.Between(100, 200),
-      "enemyImage4"
+      "enemyImage5"
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
@@ -268,7 +268,7 @@ export default class Scene4 extends Phaser.Scene {
         .text(
           this.scale.width / 2,
           this.scale.height / 2,
-          "You Win! Moving to Next Level...",
+          "You Defeated the BOSS!",
           {
             font: "30px 'Pixelify Sans'",
             fill: "#fff",
@@ -276,9 +276,9 @@ export default class Scene4 extends Phaser.Scene {
         )
         .setOrigin(0.5);
 
-      // Transition to Scene4 after a short delay
+      // Transition to Win after a short delay
       this.time.delayedCall(2000, () => {
-        this.scene.start("Scene5");
+        this.scene.start("Scene6");
       });
 
       this.gameOver = true;
@@ -353,7 +353,7 @@ export default class Scene4 extends Phaser.Scene {
     this.gameOver = true;
 
     this.input.keyboard.once("keydown-SPACE", () => {
-      this.scene.start("Scene3");
+      this.scene.start("Scene4");
     });
   }
 
