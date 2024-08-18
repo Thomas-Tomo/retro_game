@@ -7,9 +7,9 @@ import Scene6 from "./scene6.js";
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  parent: "game-container", // Canvas will be placed inside div with id="game-container"
+  width: 800, // Base width for desktop view
+  height: 600, // Base height for desktop view
+  parent: "game-container",
   physics: {
     default: "arcade",
     arcade: {
@@ -17,6 +17,10 @@ const config = {
     },
   },
   scene: [Scene1, Scene2, Scene3, Scene4, Scene5, Scene6],
+  scale: {
+    mode: Phaser.Scale.ScaleModes.FIT, // Scale the canvas to fit the screen
+    autoCenter: Phaser.Scale.CENTER_BOTH, // Center the canvas in the middle
+  },
 };
 
 const game = new Phaser.Game(config);
