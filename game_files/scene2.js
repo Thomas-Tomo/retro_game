@@ -338,7 +338,7 @@ export default class Scene2 extends Phaser.Scene {
       .text(
         this.scale.width / 2,
         this.scale.height / 2,
-        "Level Lost\nPress SPACE to Level Down",
+        "Level Lost\nPress SPACE or Tap to Level Down",
         {
           font: "30px 'Pixelify Sans'",
           fill: "#fff",
@@ -349,9 +349,20 @@ export default class Scene2 extends Phaser.Scene {
 
     this.gameOver = true;
 
+    // Restart the game when SPACE is pressed
     this.input.keyboard.once("keydown-SPACE", () => {
-      this.scene.start("Scene1");
+      this.restartLevel();
     });
+
+    // Restart the game when the pointer is pressed anywhere on the screen
+    this.input.once("pointerdown", () => {
+      this.restartLevel();
+    });
+  }
+
+  // Helper method to restart the level
+  restartLevel() {
+    this.scene.start("Scene1");
   }
 
   update() {
