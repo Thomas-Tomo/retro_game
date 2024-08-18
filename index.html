@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="css/index.css" />
 
   <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="64x64" href="assets/favicon/main_big_bad_64x64.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/main_big_bad_32x32.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/main_big_bad_16x16.ico">
+  <link rel="apple-touch-icon" sizes="64x64" href="assets/favicon/main_big_bad_64x64.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/main_big_bad_32x32.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/main_big_bad_16x16.ico" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/712db90352.js" crossorigin="anonymous"></script>
 </head>
@@ -62,22 +62,35 @@
         <div id="game-area">
           <div class="game-info">
             <h2>Welcome to Space Frog - The game!</h2>
-            <br>
+            <br />
             <h3>🎮 Get Ready to Hop in:</h3>
 
             <ul class="custom-bullets">
-              <li><b>Glide & Dive:</b> Use arrow keys to zip left, right, up & down across the galaxy.</li>
-              <li><b>Feast on Flies:</b> Gobble up flies to power on in your advance!</li>
-              <li><b>Dodge & Weave:</b> Steer clear of pesky enemies & devious space boulder's.</li>
-              <li><b>Lives at Stake:</b> Will you survive or thrive? use your lives to win!</li>
+              <li>
+                <b>Glide & Dive:</b> Use arrow keys to zip left, right, up &
+                down across the galaxy.
+              </li>
+              <li>
+                <b>Feast on Flies:</b> Gobble up flies to power on in your
+                advance!
+              </li>
+              <li>
+                <b>Dodge & Weave:</b> Steer clear of pesky enemies & devious
+                space boulder's.
+              </li>
+              <li>
+                <b>Lives at Stake:</b> Will you survive or thrive? use your
+                lives to win!
+              </li>
             </ul>
-            <b>Mission:</b> Embark on an epic journey as Space Frog, navigating through perilous levels inspired by
-            legendary retro games that defined a generation. Along the way, you'll face relentless challenges, all
-            leading up to a final showdown with the villainous SPACE TOAD. Only the bravest will conquer the cosmos &
-            emerge victorious!
-            <br><br>
+            <b>Mission:</b> Embark on an epic journey as Space Frog,
+            navigating through perilous levels inspired by legendary retro
+            games that defined a generation. Along the way, you'll face
+            relentless challenges, all leading up to a final showdown with the
+            villainous SPACE TOAD. Only the bravest will conquer the cosmos &
+            emerge victorious! <br /><br />
             Can you master the galaxy of retro homage?
-            <br><br>
+            <br /><br />
             <h3>Good luck, space explorer!</h3>
             <h4>Ready? Let’s leap into the adventure! 🐸✨</h4>
             <p>⬇</p>
@@ -85,30 +98,9 @@
         </div>
 
         <div class="angles">
-          <button id="play-btn" onclick="window.location.href='spacefrog.html'">Activate Game</button>
-
-          <!-- <div id="game-pad">
-            <div class="select-start">
-              <div class="button start">Start</div>
-            </div>
-            <div class="d-pad">
-              <div id="up" class="up">
-                <i class="fa-solid fa-caret-up"></i>
-              </div>
-              <div id="down" class="down">
-                <i class="fa-solid fa-caret-down"></i>
-              </div>
-              <div id="left" class="left">
-                <i class="fa-solid fa-caret-left"></i>
-              </div>
-              <div id="right" class="right">
-                <i class="fa-solid fa-caret-right"></i>
-              </div>
-            </div>
-            <div class="select-start">
-              <div class="button reset">Reset</div>
-            </div>
-          </div> -->
+          <button id="play-btn" onclick="window.location.href='spacefrog.html'">
+            Activate Game
+          </button>
         </div>
         <h3 id="scrollHead" style="display: none"></h3>
       </section>
@@ -118,12 +110,14 @@
       <p>&copy; 2024 Retro Game. All rights reserved to...</p>
       <h4 class="cats">some cool cats</h4>
       <div class="footer-links">
-        <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank"><i
-            class="fa-brands fa-github-alt"></i></i></a>
-
+        <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank" id="github-link">
+          <i class="fa-brands fa-github-alt"></i>
+        </a>
+        <audio id="click-sound-4" src="assets/sounds/90s_game.mp3"></audio>
+      </div>
     </footer>
+    <script src="/js/index.js"></script>
   </div>
-
 </body>
 
 </html>
