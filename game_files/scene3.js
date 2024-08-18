@@ -96,7 +96,7 @@ export default class Scene3 extends Phaser.Scene {
     });
 
     // Win condition and game over flag
-    this.winCondition = 1;
+    this.winCondition = 8;
     this.gameOver = false;
     this.paused = false;
 
