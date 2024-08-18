@@ -336,12 +336,11 @@ export default class Scene1 extends Phaser.Scene {
 
     this.sound.play("gameOverSound");
 
-    player.setTint(0xff0000);
     this.add
       .text(
         this.scale.width / 2,
         this.scale.height / 2,
-        "Game Over\nPress SPACE to Restart",
+        "Game Over\nPress SPACE or Tap to Restart",
         {
           font: "30px 'Pixelify Sans'",
           fill: "#fff",
@@ -352,9 +351,20 @@ export default class Scene1 extends Phaser.Scene {
 
     this.gameOver = true;
 
+    // Restart game when SPACE is pressed
     this.input.keyboard.once("keydown-SPACE", () => {
-      this.scene.restart();
+      this.restartGame();
     });
+
+    // Restart game when pointer is pressed anywhere on the screen
+    this.input.once("pointerdown", () => {
+      this.restartGame();
+    });
+  }
+
+  // Helper method to restart the game
+  restartGame() {
+    this.scene.restart();
   }
 
   update() {
