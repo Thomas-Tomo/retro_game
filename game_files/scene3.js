@@ -196,8 +196,6 @@ export default class Scene3 extends Phaser.Scene {
     const fly = new Fly(this, flyX, flyY);
     this.flies.add(fly.sprite);
     this.occupiedPositions.push({ x: flyX, y: flyY });
-
-    console.log("Fly added at:", flyX, flyY);
   }
 
   addObstacle() {
@@ -218,8 +216,6 @@ export default class Scene3 extends Phaser.Scene {
     );
     this.obstacles.add(obstacle.sprite);
     this.occupiedPositions.push({ x: obstacleX, y: obstacleY });
-
-    console.log("Obstacle added at:", obstacleX, obstacleY); // Debugging
   }
 
   addEnemy() {
@@ -240,8 +236,6 @@ export default class Scene3 extends Phaser.Scene {
     );
     this.enemies.add(enemy.sprite);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
-
-    console.log("Enemy added at:", enemyX, enemyY); // Debugging
   }
 
   collectFly(player, fly) {
