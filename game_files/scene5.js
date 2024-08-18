@@ -2,6 +2,7 @@ import Player from "./player.js";
 import Fly from "./fly.js";
 import Obstacle from "./obstacle.js";
 import Enemy from "./enemy.js";
+import Boss from "./boss.js"; // Import the Boss class
 
 export default class Scene5 extends Phaser.Scene {
   constructor() {
@@ -14,6 +15,7 @@ export default class Scene5 extends Phaser.Scene {
     this.load.image("fly", "assets/images/fly.png");
     this.load.image("rock", "assets/images/fire.png");
     this.load.image("enemyImage5", "assets/images/car.png");
+    this.load.image("boss", "assets/images/main_big_bad.png");
     // Load the play button image
     this.load.image("startButton", "assets/images/play.png");
 
@@ -108,6 +110,18 @@ export default class Scene5 extends Phaser.Scene {
 
     // Occupied positions
     this.occupiedPositions = [];
+
+    // Create the Boss (only one instance)
+    this.boss = new Boss(this, this.scale.width / 2, 100, 2, "boss");
+
+    // Set collision and overlap for the Boss
+    this.physics.add.collider(
+      this.player.sprite,
+      this.boss.sprite,
+      this.hitBoss, // Use a specific method for hitting the boss
+      null,
+      this
+    );
   }
 
   createStarBackground() {
@@ -362,6 +376,30 @@ export default class Scene5 extends Phaser.Scene {
     this.input.keyboard.once("keydown-SPACE", () => {
       this.scene.start("Scene4");
     });
+  }
+
+  hitBoss(player, boss) {
+    if (this.gameOver || player.hit) {
+      return;
+    }
+
+    this.explosionSound.play();
+    player.hit = true;
+
+    // Reduce the player's lives or trigger game over based on your game's logic
+    this.lives -= 2; // Maybe the boss does more damage
+
+    this.updateLivesDisplay();
+
+    if (this.lives <= 0) {
+      this.triggerGameOver(player);
+    } else {
+      this.player.sprite.setTint(0xff0000);
+      this.time.delayedCall(1000, () => {
+        this.player.sprite.clearTint();
+        player.hit = false;
+      });
+    }
   }
 
   update() {
