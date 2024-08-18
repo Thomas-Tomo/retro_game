@@ -20,6 +20,11 @@ document.querySelectorAll('.member').forEach(function (member) {
     audio.play();
   });
 });
+// Add a click event listener to the play a sound effect on the github link
+document.getElementById('github-link').addEventListener('click', function () {
+  var audio = document.getElementById('click-sound-4');
+  audio.play();
+});
 
 document.addEventListener('keydown', function (event) {
   switch (event.key) {
