@@ -1,109 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retro Game</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    
-    <script
-      src="https://kit.fontawesome.com/712db90352.js"
-      crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <audio id="load-sound" src="assets/sounds/beeping_computer.mp3" preload="auto" autoplay></audio>
-    <div class="container">
-      <header id="header">
-        <div class="circles">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-        <div class="title">
-          <h1><a href="/index.html">Retro Game</a></h1>
-          <nav>
-            <ul>
-              <li>
-                <a class="headLink" id="links-1" href="#play-btn">Game</a>
-              </li>
-              <li>
-                <a class="headLink" id="links-2" href="/team.html"
-                  >Crew</a
-                >
-              </li>
-              <li><a class="headLink" id="links-3" href="#footer">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="circles">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-      </header>
 
-      <main>
-        <section>
-          <div id="game-area">
-            <div class="game-info">
-              <h2>Get ready to Roll</h2>
-              <p>
-                Experience the thrill of the Retro Game! Press the button below
-                to start playing.
-              </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+
+  <script src="https://kit.fontawesome.com/712db90352.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header id="header">
+      <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="title">
+        <h1><a href="/index.html">Retro Game</a></h1>
+        <nav>
+          <ul>
+            <li>
+              <a class="headLink" id="links-1" href="#play-btn">Game</a>
+              <audio id="click-sound-1" src="assets/sounds/one_beep.mp3"></audio>
+            </li>
+            <li>
+              <a class="headLink" id="links-2" href="/team.html">Crew</a>
+              <audio id="click-sound-2" src="assets/sounds/one_beep.mp3"></audio>
+            </li>
+            <li>
+              <a class="headLink" id="links-3" href="#footer">Contact</a>
+              <audio id="click-sound-3" src="assets/sounds/one_beep.mp3"></audio>
+            </li>
+          </ul> 
+        </nav>
+      </div>
+      <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div id="game-area">
+          <div class="game-info">
+            <h2>Get ready to Roll</h2>
+            <p>
+              Experience the thrill of the Retro Game! Press the button below
+              to start playing.
+            </p>
+          </div>
+          <div class="game-play">
+            <img src="assets/images/test-img.webp" alt="test image" />
+          </div>
+        </div>
+
+        <div class="angles">
+          <button id="play-btn" onclick="window.location.href='spacefrog.html'">Activate Game</button>
+
+          <div id="game-pad">
+            <div class="select-start">
+              <div class="button start">Start</div>
             </div>
-            <div class="game-play">
-              <img src="assets/images/test-img.webp" alt="test image" />
+            <div class="d-pad">
+              <div id="up" class="up">
+                <i class="fa-solid fa-caret-up"></i>
+              </div>
+              <div id="down" class="down">
+                <i class="fa-solid fa-caret-down"></i>
+              </div>
+              <div id="left" class="left">
+                <i class="fa-solid fa-caret-left"></i>
+              </div>
+              <div id="right" class="right">
+                <i class="fa-solid fa-caret-right"></i>
+              </div>
+            </div>
+            <div class="select-start">
+              <div class="button reset">Reset</div>
             </div>
           </div>
+        </div>
+        <h3 id="scrollHead" style="display: none"></h3>
+      </section>
+    </main>
 
-          <div class="angles">
-            <button id="play-btn" onclick="window.location.href='spacefrog.html'">Activate Game</button>
+    <footer id="footer">
+      <p>&copy; 2024 Retro Game. All rights reserved to...</p>
+      <h4 class="cats">some cool cats</h4>
+      <div class="footer-links">
+        <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank"><i
+            class="fa-brands fa-github-alt"></i></i></a>
 
-            <div id="game-pad">
-              <div class="select-start">
-                <div class="button start">Start</div>
-              </div>
-              <div class="d-pad">
-                <div id="up" class="up">
-                  <i class="fa-solid fa-caret-up"></i>
-                </div>
-                <div id="down" class="down">
-                  <i class="fa-solid fa-caret-down"></i>
-                </div>
-                <div id="left" class="left">
-                  <i class="fa-solid fa-caret-left"></i>
-                </div>
-                <div id="right" class="right">
-                  <i class="fa-solid fa-caret-right"></i>
-                </div>
-              </div>
-              <div class="select-start">
-                <div class="button reset">Reset</div>
-              </div>
-            </div>
-          </div>
-          <h3 id="scrollHead" style="display: none"></h3>
-        </section>
-      </main>
+    </footer>
+  </div>
+  <script src="js/index.js"></script>
+</body>
 
-      <footer id="footer">
-        <p>&copy; 2024 Retro Game. All rights reserved to...</p>
-        <h4 class="cats">some cool cats</h4>
-        <div class="footer-links">
-          <a href="https://github.com/Thomas-Tomo/retro_game" target="_blank"
-            ><i class="fa-brands fa-github-alt"></i></i
-          ></a>
-         
-      </footer >
-    </div>
-    <script src="js/index.js"></script>
-  </body>
 </html>
