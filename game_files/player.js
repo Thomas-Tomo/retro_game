@@ -4,19 +4,19 @@ export default class Player {
     this.sprite = scene.physics.add.sprite(x, y, "frog");
 
     // Set the player's display size
-    this.sprite.setDisplaySize(60, 60); // Set width and height to 60px
+    this.sprite.setDisplaySize(60, 60);
+    this.sprite.setSize(40, 40);
+    this.sprite.setOffset(10, 10);
 
-    this.sprite.setSize(40, 40); // Set the hitbox size to 40x40 pixels
-    this.sprite.setOffset(10, 10); // Offset the hitbox by 10 pixels
+    // Initialize cursor keys for keyboard input
+    this.cursors = this.scene.input.keyboard.createCursorKeys();
 
-    this.cursors = scene.input.keyboard.createCursorKeys();
-
-    // Add the movement sound effect with adjusted volume
+    // Movement sound effect
     this.moveSound = this.scene.sound.add("moveSound", { volume: 0.2 });
 
     // Timer for managing sound playback
     this.soundTimer = 0;
-    this.soundCooldown = 3000; // 3 seconds
+    this.soundCooldown = 3000;
     this.soundPlayed = false;
 
     // Set the player's bounds
@@ -26,58 +26,119 @@ export default class Player {
       yMin: 0,
       yMax: scene.scale.height - this.sprite.displayHeight,
     };
+
+    // Touchscreen movement flags
+    this.moveUp = false;
+    this.moveDown = false;
+    this.moveLeft = false;
+    this.moveRight = false;
+
+    // Create touch controls
+    this.createTouchControls();
+  }
+
+  createTouchControls() {
+    // Button properties
+    const buttonSize = 50; // Smaller size for the buttons
+    const controlMargin = 60; // Margin from the edge of the screen
+    const buttonSpacing = 60; // Space between buttons
+
+    // Center coordinates for the buttons
+    const centerX = this.scene.scale.width / 2;
+    const bottomY = this.scene.scale.height - buttonSize / 2 - controlMargin;
+
+    // Up Button
+    this.upButton = this.scene.add
+      .image(centerX, bottomY - buttonSpacing, "upButton")
+      .setDisplaySize(buttonSize, buttonSize)
+      .setInteractive();
+    this.upButton.on("pointerdown", () => {
+      this.moveUp = true;
+    });
+    this.upButton.on("pointerup", () => {
+      this.moveUp = false;
+    });
+
+    // Down Button
+    this.downButton = this.scene.add
+      .image(centerX, bottomY + buttonSpacing, "downButton")
+      .setDisplaySize(buttonSize, buttonSize)
+      .setInteractive();
+    this.downButton.on("pointerdown", () => {
+      this.moveDown = true;
+    });
+    this.downButton.on("pointerup", () => {
+      this.moveDown = false;
+    });
+
+    // Left Button
+    this.leftButton = this.scene.add
+      .image(centerX - buttonSpacing, bottomY, "leftButton")
+      .setDisplaySize(buttonSize, buttonSize)
+      .setInteractive();
+    this.leftButton.on("pointerdown", () => {
+      this.moveLeft = true;
+    });
+    this.leftButton.on("pointerup", () => {
+      this.moveLeft = false;
+    });
+
+    // Right Button
+    this.rightButton = this.scene.add
+      .image(centerX + buttonSpacing, bottomY, "rightButton")
+      .setDisplaySize(buttonSize, buttonSize)
+      .setInteractive();
+    this.rightButton.on("pointerdown", () => {
+      this.moveRight = true;
+    });
+    this.rightButton.on("pointerup", () => {
+      this.moveRight = false;
+    });
   }
 
   update(time, delta) {
-    let angle = 0; // Default angle
+    let angle = 0;
     let moveSoundPlayed = false;
 
-    // Move player based on input
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown || this.moveLeft) {
       this.sprite.setVelocityX(-200);
-      angle = -90; // Tilt left
+      angle = -90;
       moveSoundPlayed = true;
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown || this.moveRight) {
       this.sprite.setVelocityX(200);
-      angle = 90; // Tilt right
+      angle = 90;
       moveSoundPlayed = true;
     } else {
       this.sprite.setVelocityX(0);
     }
 
-    if (this.cursors.up.isDown) {
+    if (this.cursors.up.isDown || this.moveUp) {
       this.sprite.setVelocityY(-200);
-      angle = angle === 0 ? 0 : angle; // Tilt up
+      angle = angle === 0 ? 0 : angle;
       moveSoundPlayed = true;
-    } else if (this.cursors.down.isDown) {
+    } else if (this.cursors.down.isDown || this.moveDown) {
       this.sprite.setVelocityY(200);
-      angle = angle === 0 ? 180 : angle; // Tilt down
+      angle = angle === 0 ? 180 : angle;
       moveSoundPlayed = true;
     } else {
       this.sprite.setVelocityY(0);
     }
 
-    // Apply the calculated angle
     this.sprite.setAngle(angle);
 
-    // Manage sound playback based on movement
     if (moveSoundPlayed) {
       if (!this.soundPlayed) {
-        // Play sound on initial button press
         this.moveSound.play();
         this.soundPlayed = true;
         this.soundTimer = time;
       } else if (time - this.soundTimer >= this.soundCooldown) {
-        // Play sound every 3 seconds
         this.moveSound.play();
-        this.soundTimer = time; // Reset the timer
+        this.soundTimer = time;
       }
     } else {
-      // Reset sound state if no movement
       this.soundPlayed = false;
     }
 
-    // Constrain player within bounds
     this.sprite.x = Phaser.Math.Clamp(
       this.sprite.x,
       this.bounds.xMin,

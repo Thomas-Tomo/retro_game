@@ -20,6 +20,11 @@ export default class Scene1 extends Phaser.Scene {
     // Load the life image
     this.load.image('lifeImage', 'assets/images/life.png');
 
+    this.load.image('upButton', 'assets/images/arrowup.png');
+    this.load.image('downButton', 'assets/images/arrowdown.png');
+    this.load.image('leftButton', 'assets/images/arrowright.png');
+    this.load.image('rightButton', 'assets/images/arrowleft.png');
+
     // Load the collect sound
     this.load.audio('collectSound', 'assets/sounds/pickupCoin.wav');
     // Load the obstacle collision sound
