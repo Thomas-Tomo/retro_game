@@ -3,10 +3,10 @@ export default class Player {
     this.scene = scene;
     this.sprite = scene.physics.add.sprite(x, y, "frog");
 
-    // Set the player's display size
+    // Set the player's display size and collision size
     this.sprite.setDisplaySize(60, 60);
-    this.sprite.setSize(40, 40);
-    this.sprite.setOffset(10, 10);
+    this.sprite.setSize(40, 40); // Collision size
+    this.sprite.setOffset(10, 10); // Collision offset
 
     // Initialize cursor keys for keyboard input
     this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -19,13 +19,8 @@ export default class Player {
     this.soundCooldown = 3000;
     this.soundPlayed = false;
 
-    // Set the player's bounds
-    this.bounds = {
-      xMin: 0,
-      xMax: scene.scale.width - this.sprite.displayWidth,
-      yMin: 0,
-      yMax: scene.scale.height - this.sprite.displayHeight,
-    };
+    // Set the player's bounds based on the game world
+    this.setBounds();
 
     // Touchscreen movement flags
     this.moveUp = false;
@@ -36,6 +31,16 @@ export default class Player {
     // Create touch controls and the toggle button
     this.createTouchControls();
     this.createToggleButton();
+  }
+
+  setBounds() {
+    // Update bounds to account for player sprite size and world boundaries
+    this.bounds = {
+      xMin: 0 + this.sprite.displayWidth / 2,
+      xMax: this.scene.scale.width - this.sprite.displayWidth / 2,
+      yMin: 0 + this.sprite.displayHeight / 2,
+      yMax: this.scene.scale.height - this.sprite.displayHeight / 2,
+    };
   }
 
   createTouchControls() {
@@ -188,6 +193,7 @@ export default class Player {
       this.soundPlayed = false;
     }
 
+    // Clamp position to ensure it stays within bounds
     this.sprite.x = Phaser.Math.Clamp(
       this.sprite.x,
       this.bounds.xMin,
