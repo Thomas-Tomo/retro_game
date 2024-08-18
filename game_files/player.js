@@ -52,10 +52,16 @@ export default class Player {
       .image(centerX, bottomY - buttonSpacing, 'upButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
+
     this.upButton.on('pointerdown', () => {
       this.moveUp = true;
     });
+
     this.upButton.on('pointerup', () => {
+      this.moveUp = false;
+    });
+
+    this.upButton.on('pointerout', () => {
       this.moveUp = false;
     });
 
@@ -70,6 +76,9 @@ export default class Player {
     this.downButton.on('pointerup', () => {
       this.moveDown = false;
     });
+    this.downButton.on('pointerout', () => {
+      this.moveDown = false;
+    });
 
     // Left Button
     this.leftButton = this.scene.add
@@ -82,6 +91,9 @@ export default class Player {
     this.leftButton.on('pointerup', () => {
       this.moveLeft = false;
     });
+    this.leftButton.on('pointerout', () => {
+      this.moveLeft = false;
+    });
 
     // Right Button
     this.rightButton = this.scene.add
@@ -92,6 +104,9 @@ export default class Player {
       this.moveRight = true;
     });
     this.rightButton.on('pointerup', () => {
+      this.moveRight = false;
+    });
+    this.rightButton.on('pointerout', () => {
       this.moveRight = false;
     });
   }
