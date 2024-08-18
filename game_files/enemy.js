@@ -1,15 +1,15 @@
 export default class Enemy {
   constructor(scene, x, y, speed, imageKey) {
     this.scene = scene;
-    this.originalX = x; // Store the initial x position
-    this.originalY = y; // Store the initial y position
+    this.originalX = x;
+    this.originalY = y;
     this.sprite = scene.physics.add.sprite(x, y, imageKey);
 
     // Set the size of the enemy sprite
-    this.sprite.setDisplaySize(30, 30); // Adjust as needed
+    this.sprite.setDisplaySize(30, 30);
 
     // Set the size of the physics body to match the sprite
-    this.sprite.body.setSize(30, 30); // Match the display size of the sprite
+    this.sprite.body.setSize(30, 30);
 
     // Choose a random direction (0 for horizontal, 1 for vertical)
     const direction = Phaser.Math.Between(0, 1);
@@ -18,52 +18,67 @@ export default class Enemy {
     const distance = 60;
     const duration = speed * 20; // Duration of the movement
 
+    let tweenConfig;
+
     if (direction === 0) {
       // Horizontal movement
-      this.scene.tweens.timeline({
+      tweenConfig = {
         targets: this.sprite,
-        loop: -1, // Infinite loop
+        loop: -1,
         tweens: [
           {
-            x: this.originalX - distance, // Move to the left
-            duration: duration, // Duration of the movement
-            ease: "Linear", // Linear easing
-          },
-          {
-            x: this.originalX + distance, // Move to the right
-            duration: duration, // Duration of the movement
+            x: this.originalX - distance,
+            duration: duration,
             ease: "Linear",
           },
           {
-            x: this.originalX, // Return to the original x position
-            duration: duration, // Duration of the return
+            x: this.originalX + distance,
+            duration: duration,
+            ease: "Linear",
+          },
+          {
+            x: this.originalX,
+            duration: duration,
             ease: "Linear",
           },
         ],
-      });
+      };
     } else {
       // Vertical movement
-      this.scene.tweens.timeline({
+      tweenConfig = {
         targets: this.sprite,
-        loop: -1, // Infinite loop
+        loop: -1,
         tweens: [
           {
-            y: this.originalY - distance, // Move up
-            duration: duration, // Duration of the movement
+            y: this.originalY - distance,
+            duration: duration,
             ease: "Linear",
           },
           {
-            y: this.originalY + distance, // Move down
-            duration: duration, // Duration of the movement
+            y: this.originalY + distance,
+            duration: duration,
             ease: "Linear",
           },
           {
-            y: this.originalY, // Return to the original y position
-            duration: duration, // Duration of the return
+            y: this.originalY,
+            duration: duration,
             ease: "Linear",
           },
         ],
-      });
+      };
     }
+
+    // Create and store the tween
+    this.movementTween = this.scene.tweens.timeline(tweenConfig);
+  }
+
+  pause() {
+    // Pause the tween
+    this.movementTween.pause();
+  }
+
+  resume() {
+    // Resume the tween
+    this.movementTween.resume();
   }
 }

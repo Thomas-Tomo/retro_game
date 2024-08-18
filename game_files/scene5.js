@@ -28,6 +28,7 @@ export default class Scene5 extends Phaser.Scene {
   }
 
   create() {
+    this.gameStarted = false;
     // Create star background
     this.createStarBackground();
 
@@ -92,6 +93,7 @@ export default class Scene5 extends Phaser.Scene {
     // Win condition and game over flag
     this.winCondition = 15;
     this.gameOver = false;
+    this.paused = false;
 
     // Timers for generating flies and obstacles (initially disabled)
     this.flyTimer = null;
@@ -100,6 +102,8 @@ export default class Scene5 extends Phaser.Scene {
 
     // Occupied positions
     this.occupiedPositions = [];
+    // Input event listeners
+    this.input.keyboard.on("keydown-P", () => this.togglePause()); // 'P' for pausing
 
     // Boss (initially disabled and not created)
     this.boss = null;
@@ -135,6 +139,7 @@ export default class Scene5 extends Phaser.Scene {
 
     // Create the Boss instance
     this.boss = new Boss(this, this.scale.width / 2, 100, 2, "boss");
+    this.boss.sprite.setData("instance1", this.boss);
 
     // Set collision and overlap for the Boss
     this.physics.add.collider(
@@ -190,6 +195,64 @@ export default class Scene5 extends Phaser.Scene {
       null,
       this
     );
+    this.gameStarted = true;
+  }
+
+  togglePause() {
+    if (!this.gameStarted || this.gameOver) return; // Ensure game has started
+
+    if (this.paused) {
+      // Resume the game
+      this.physics.resume();
+      if (this.flyTimer) this.flyTimer.paused = false;
+      if (this.obstacleTimer) this.obstacleTimer.paused = false;
+      if (this.enemyTimer) this.enemyTimer.paused = false;
+      this.backgroundMusic.play();
+
+      // Resume enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").resume();
+      });
+
+      // Resume boss movement
+      if (this.boss && this.boss.sprite.getData("instance1")) {
+        this.boss.sprite.getData("instance1").resume();
+      }
+
+      if (this.pauseText) this.pauseText.setVisible(false);
+      this.paused = false;
+    } else {
+      // Pause the game
+      this.physics.pause();
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
+      this.backgroundMusic.pause();
+
+      // Pause enemy movement
+      this.enemies.children.iterate((enemy) => {
+        if (enemy.getData("instance")) enemy.getData("instance").pause();
+      });
+
+      // Pause boss movement
+      if (this.boss && this.boss.sprite.getData("instance1")) {
+        this.boss.sprite.getData("instance1").pause();
+      }
+
+      this.pauseText = this.add
+        .text(
+          this.scale.width / 2,
+          this.scale.height / 2,
+          "Game Paused\nPress P to Resume",
+          {
+            font: "30px 'Pixelify Sans'",
+            fill: "#fff",
+            align: "center",
+          }
+        )
+        .setOrigin(0.5);
+      this.paused = true;
+    }
   }
 
   isPositionOccupied(x, y, tolerance = 30) {
@@ -249,6 +312,7 @@ export default class Scene5 extends Phaser.Scene {
       "enemyImage5"
     );
     this.enemies.add(enemy.sprite);
+    enemy.sprite.setData("instance", enemy);
     this.occupiedPositions.push({ x: enemyX, y: enemyY });
   }
 
@@ -269,8 +333,9 @@ export default class Scene5 extends Phaser.Scene {
     // Check win condition
     if (this.score >= this.winCondition) {
       this.physics.pause();
-      this.flyTimer.paused = true; // Stop fly generation
-      this.obstacleTimer.paused = true; // Stop obstacle generation
+      if (this.flyTimer) this.flyTimer.paused = true;
+      if (this.obstacleTimer) this.obstacleTimer.paused = true;
+      if (this.enemyTimer) this.enemyTimer.paused = true;
       this.backgroundMusic.stop();
       this.add
         .text(
@@ -337,9 +402,9 @@ export default class Scene5 extends Phaser.Scene {
 
   triggerGameOver(player) {
     this.physics.pause();
-    this.flyTimer.paused = true;
-    this.obstacleTimer.paused = true;
-    this.enemyTimer.paused = true;
+    if (this.flyTimer) this.flyTimer.paused = true;
+    if (this.obstacleTimer) this.obstacleTimer.paused = true;
+    if (this.enemyTimer) this.enemyTimer.paused = true;
     this.backgroundMusic.stop();
 
     this.sound.play("gameOverSound");
@@ -377,7 +442,7 @@ export default class Scene5 extends Phaser.Scene {
   }
 
   hitBoss(player, boss) {
-    if (this.gameOver || player.hit) {
+    if ((this.gameOver && !this.paused) || player.hit) {
       return;
     }
 

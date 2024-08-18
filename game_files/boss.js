@@ -6,7 +6,7 @@ export default class Boss {
     this.sprite = scene.physics.add.sprite(x, y, imageKey);
 
     // Set the size of the boss sprite
-    this.sprite.setDisplaySize(80, 80); // Bigger than regular enemies
+    this.sprite.setDisplaySize(80, 80);
 
     // Define the screen bounds
     this.screenWidth = scene.sys.game.config.width;
@@ -63,10 +63,23 @@ export default class Boss {
       ease: "Sine.easeInOut",
     });
 
-    this.scene.tweens.timeline({
+    // Create and store the tween
+    this.movementTween = this.scene.tweens.timeline({
       targets: this.sprite,
       loop: -1,
       tweens: movements,
     });
+    // Store the instance on the sprite for access in the scene
+    this.sprite.setData("instance1", this);
+  }
+
+  pause() {
+    // Pause the tween
+    this.movementTween.pause();
+  }
+
+  resume() {
+    // Resume the tween
+    this.movementTween.resume();
   }
 }
