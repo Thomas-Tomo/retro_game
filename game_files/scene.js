@@ -78,7 +78,7 @@ export default class Scene1 extends Phaser.Scene {
       volume: 0.2,
     });
 
-    this.winCondition = 1;
+    this.winCondition = 3;
     this.gameOver = false;
     this.paused = false; // Add paused state
     this.flyTimer = null;
