@@ -39,16 +39,32 @@ section {
 
 /*This is game screen */
 #game-area {
-  display: flex;
-  margin: 20px auto;
-  height: 600px;
-  max-width: 800px;
+  margin: 25px auto;
+  height: 615px;
+  max-width: 815px;
   background-color: var(--extra-color-1);
   border: 8px solid var(--grey);
   border-radius: 10px;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.custom-bullets {
+  display: flex;
+  flex-direction: column;
+  list-style-type: disc; /* Default bullet points */
+  padding-left: 20px; /* Adjust padding as needed */
+}
+
+.custom-bullets li {
+  margin-bottom: 10px; /* Add space between list items */
 }
 
 .game-play {
