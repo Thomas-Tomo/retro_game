@@ -10,6 +10,7 @@ This web-based game has a hint of nostalgia with a modern day twist. There are a
 - [**Setup Instructions**](#setup-instructions)
 - [**Colour**](#colour)
 - [**Wire Frame**](#wire-frame)
+- [**Testing**](#testing)
 - [**Game Flow**](#game-flow)
 - [**References**](References)
 - [**Technologies used**](Technologies-used)
@@ -60,6 +61,13 @@ By forking the repository, we make a copy of the original repository on our GitH
 
 ---
 
+### Testing
+
+ - All manual testing has been done.
+ - Every button and movement has been tested.
+
+---
+
 ### Game Flow
 
 1. **Main Screen**
@@ -104,12 +112,14 @@ By forking the repository, we make a copy of the original repository on our GitH
     *Both versions*
       - Eat up the flies to continue your journey.
       - Avoid the ememies and boulders.
+      - The is an option for the player to pause the game by pressing 'p'
    
 
 5. **End Screen**
   
     - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratutaions"
     - The player has the option to return to the home page.
+   
 
 
 ### References
