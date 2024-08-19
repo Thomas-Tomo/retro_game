@@ -136,10 +136,11 @@ footer {
 
 .fa-github-alt {
   font-size: 3rem;
-  animation: flash 2s infinite; /* Adjust the duration as needed */
+  animation: flash 2s infinite;
 }
 .fa-github-alt:hover {
   transform: scale(1.2);
+  animation: flash 1s ease-in-out;
   color: #272727;
 }
 
