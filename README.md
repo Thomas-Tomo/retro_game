@@ -59,7 +59,7 @@ By forking the repository, we make a copy of the original repository on our GitH
 ### Colour 
 
 + Colours were taken from the first image that was used on the wire-frame.
-+ Colours were selected using the colors color palette generator.
++ Colours were selected using the coolors color palette generator.
 
 <img src="assets/images/readme_images/space_frog_colours.png" alt="appearance" width="500px" margin=" 0 auto"/>
 
@@ -68,7 +68,9 @@ By forking the repository, we make a copy of the original repository on our GitH
 ---
 ### Wire Frame
 
-Heir is the wireframe that was used to design the game. The wireframe was created using figma. The gave us a clear idea of the look and feel of the over all site.
+- This is the wireframe that was used to design the game.
+- The wireframe was created using figma.
+- This gave us a clear idea of the look and feel of the over all site.
 
 <img src="assets/images/readme_images/wireframe_home.jpg" alt="appearance" width="400px" margin=" 0 auto"/>
 
@@ -111,7 +113,7 @@ Test unusual scenarios, such as pressing multiple keys at once or reaching extre
 ### Bug Tracking:
 
 Document any bugs or issues discovered during testing.
-Fix identified bugs and retest to confirm that they are resolved. *(The only bugs are the fly's that you can eat 😜)*
+Fix identified bugs and retest to confirm that they are resolved. *(The only bugs are the flies that you can eat 😜)*
 
 ### Final Check:
 
@@ -188,11 +190,11 @@ The game is available to play on PC, Mac and mobile devices. Using a web browser
 
 The following links were used:
 
-- [webwizard](https://webwizard.ie/) was used for the design
+- [webwizard](https://webwizard.ie/) was used for the design.
 
-- [pixabay](https://pixabay.com/sound-effects/search/8-bit/) was used for the sound effects
+- [pixabay](https://pixabay.com/sound-effects/search/8-bit/) was used for the sound effects.
 
-- [remove](https://www.remove.bg/) was used to remove backgrounds
+- [remove](https://www.remove.bg/) was used to remove backgrounds.
 
 - [figma](https://figma.com/) was used for the design of wireframes.
 
