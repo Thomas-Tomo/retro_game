@@ -17,9 +17,12 @@ We where inspired by the game **Frogger** which is a classic arcade game from th
     - [Colour](#colour)
     - [Wire Frame](#wire-frame)
     - [Testing](#testing)
-    - [Game Flow](#game-flow)
-    - [References](#references)
-    - [The Crew](#the-crew)
+    - [Functionality Testing:](#functionality-testing)
+    - [Edge Case Testing:](#edge-case-testing)
+    - [Final Check:](#final-check)
+  - [Game Flow](#game-flow)
+  - [References](#references)
+  - [The Crew](#the-crew)
 
 ### Setup Instructions
 
@@ -69,13 +72,45 @@ Heir is the wireframe that was used to design the game. The wireframe was create
 
 ### Testing
 
- - All manual testing has been done.
- - Every button and movement has been tested.
+Before deploying the game, it's crucial to thoroughly test it to ensure a smooth player experience. Below are the steps for effective testing:
 
----
+### Functionality Testing:
 
-### Game Flow
+Verify that all controls (arrow keys, space-bar) work correctly.
+Ensure that the frog moves as expected in all directions.
+Test collision detection for obstacles, enemies, and pickups.
+Confirm that the scoring system and level progression function properly.
+Cross-Browser Testing:
 
+Test the game on multiple browsers (Chrome, Firefox, Edge, Safari) to ensure compatibility.
+Check for any layout issues or performance discrepancies across different browsers.
+Responsive Design:
+
+Verify that the game scales properly on various screen sizes, including desktop, tablet, and mobile devices.
+Test touch controls on mobile devices to ensure they work smoothly.
+Performance Testing:
+
+Monitor the game’s performance for any lag, frame drops, or crashes, especially during intense action sequences.
+Check memory usage and load times to ensure they are within acceptable limits.
+User Experience Testing:
+
+Gather feedback from a group of testers regarding the game’s difficulty, controls, and overall enjoyment.
+Make adjustments based on player feedback to improve the overall experience.
+
+### Edge Case Testing:
+
+Test unusual scenarios, such as pressing multiple keys at once or reaching extreme scores, to ensure the game handles them gracefully.
+Bug Tracking:
+
+Document any bugs or issues discovered during testing.
+Fix identified bugs and retest to confirm that they are resolved.
+
+### Final Check:
+
+Ensure all features work as intended and that the game provides a fun and challenging experience before the official release.
+
+
+## Game Flow
 1. **Main Screen**
    - The main screen has four buttons:
      - **Game**: Restarts the game.
@@ -110,25 +145,25 @@ Heir is the wireframe that was used to design the game. The wireframe was create
     
     *PC version*
       - Use the arrow keys to move up, down, left and right across the screen.
-      - Alternativley click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
+      - Alternatively click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
    
     *Mobile version*
       - Use the touch screen arrows to up, down, left and right across the screen.
    
     *Both versions*
       - Eat up the flies to continue your journey.
-      - Avoid the ememies and boulders.
+      - Avoid the enemies and boulders.
       - The is an option for the player to pause the game by pressing 'p'
    
 
 5. **End Screen**
   
-    - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratutaions"
+    - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratulations"
     - The player has the option to return to the home page.
    
 
 
-### References
+## References
 
 The following links were used:
 
@@ -152,9 +187,9 @@ The following links were used:
 
  - [Video Game Music](https://downloads.khinsider.com/) was used for the sound effects.
 
----
 
-### The Crew
+
+## The Crew
 
 ***Thomas Domitrovic***
 
