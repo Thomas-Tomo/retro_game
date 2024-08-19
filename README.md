@@ -27,6 +27,7 @@ We where inspired by the game **Frogger** which is a classic arcade game from th
     - [Final Check:](#final-check)
   - [Game Flow](#game-flow)
   - [References](#references)
+    - [Technologies Used](#technologies-used)
   - [The Crew](#the-crew)
 
 ### Setup Instructions
@@ -135,8 +136,12 @@ Ensure all features work as intended and that the game provides a fun and challe
      - The player can click on the "Game" button to return to the main screen.
    - **GitHub**:
      - When the payer clicks the "Github" button they are directed to the page, with information about the development team. This includes names, and contact information.
-       
-2. **Entering the Game**
+  
+<img src="assets/images/readme_images/link_image.png" alt="appearance" width="500px" margin=" 0 auto"/>
+
+<br >
+
+1. **Entering the Game**
 
    - After clicking "Activate Game", the player is taken to the first level.
    - The object of the game is to collect the relavent number of flies to proceed to the next level.
@@ -148,27 +153,34 @@ Ensure all features work as intended and that the game provides a fun and challe
      - Level 5: Frogger
    - On each level there are baddies that relates to the the characters level that must be avoided.
   
- 3. **Playing the Game**
+  2. **Playing the Game**
 
-       The game is available to play on both a PC and mobile device.
-    
-    *PC version*
-      - Use the arrow keys to move up, down, left and right across the screen.
-      - Alternatively click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
-   
-    *Mobile version*
-      - Use the touch screen arrows to up, down, left and right across the screen.
-   
-    *Both versions*
-      - Eat up the flies to continue your journey.
-      - Avoid the enemies and boulders.
-      - The is an option for the player to pause the game by pressing 'p'
-   
 
-5. **End Screen**
+
+The game is available to play on PC, Mac and mobile devices. Using a web browser. The controls are as follows:
+
+<img src="assets/images/readme_images/controls.png" alt="appearance" height="200px" margin=" 0 auto"/>
+
+
+
+  **PC, Mac version**
+   - Use the arrow keys to move up, down, left and right across the screen.
+  - Alternatively click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
+   
+  **Mobile version**
+  - Use the touch screen arrows to up, down, left and right across the screen.
+   
+  **All versions**
+  - Eat up the flies to continue your journey.
+  - Avoid the enemies and boulders.
+  - The is an option for the player to pause the game by pressing 'p'
+   
+<br>
+
+**Winning the Game**
   
-    - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratulations"
-    - The player has the option to return to the home page.
+- When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratulations"
+- The player has the option to return to the home page.
    
 
 
