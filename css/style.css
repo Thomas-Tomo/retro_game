@@ -119,12 +119,28 @@ footer {
   font-size: 1.5rem;
   margin-top: 10px;
 }
+@keyframes flash {
+  0% {
+    color: var(--extra-color-1);
+  }
+  25% {
+    color: var(--secondary-color);
+  }
+  50% {
+    color: var(--accent-color);
+  }
+  100% {
+    color: var(--extra-color-1);
+  }
+}
+
 .fa-github-alt {
-  color: var(--extra-color-1);
   font-size: 3rem;
+  animation: flash 2s infinite;
 }
 .fa-github-alt:hover {
   transform: scale(1.2);
+  animation: flash 1s ease-in-out;
   color: #272727;
 }
 
@@ -145,11 +161,35 @@ footer {
   }
 
   .cats {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-top: 5px;
   }
 
   .fa-github-alt {
-    font-size: 2.5rem;
+    margin-top: 10px;
+    font-size: 2.7rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  #header h1 a {
+    font-size: 1.4rem;
+  }
+
+  #header li {
+    font-size: smaller;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+
+  .cats {
+    font-size: 1rem;
+  }
+
+  .fa-github-alt {
+    margin: 10px;
+    font-size: 2rem;
   }
 }

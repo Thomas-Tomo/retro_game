@@ -111,14 +111,22 @@ section {
 }
 
 @media screen and (max-width: 1030px) {
+  #game-area {
+    overflow: auto;
+  }
   .game-info {
     width: 95%;
     font-size: 95%;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
+  #game-area {
+    height: 500px;
+    overflow: auto;
+  }
   .game-info {
+    max-height: 800px;
     width: 95%;
     font-size: 70%;
   }
