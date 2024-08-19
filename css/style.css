@@ -43,6 +43,7 @@ p {
   color: black;
 }
 
+/* The header styling */
 header {
   padding: 20px;
   text-align: center;
@@ -144,6 +145,7 @@ footer {
   color: #272727;
 }
 
+/* The media queries */
 @media screen and (max-width: 1030px) {
   #header {
     display: flex;

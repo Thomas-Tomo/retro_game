@@ -46,6 +46,7 @@ section {
   border: 8px solid var(--grey);
   border-radius: 10px;
   position: relative;
+  overflow: auto;
 }
 
 .game-info {
@@ -110,10 +111,8 @@ section {
   border-color: var(--primary-color);
 }
 
+/* Media query section */
 @media screen and (max-width: 1030px) {
-  #game-area {
-    overflow: auto;
-  }
   .game-info {
     width: 95%;
     font-size: 95%;
@@ -123,7 +122,6 @@ section {
 @media screen and (max-width: 760px) {
   #game-area {
     height: 500px;
-    overflow: auto;
   }
   .game-info {
     max-height: 800px;
