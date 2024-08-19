@@ -61,10 +61,9 @@ By forking the repository, we make a copy of the original repository on our GitH
 
 Heir is the wireframe that was used to design the game. The wireframe was created using figma. The gave us a clear idea of the look and feel of the over all site.
 
-![Screenshot 2024-08-16 114939](https://github.com/user-attachments/assets/c55ca5ad-e5e8-43df-aec4-f78eacd6710f)
+<img src="assets/images/readme_images/wireframe_home.jpg" alt="appearance" width="400px" margin=" 0 auto"/>
 
-![Screenshot 2024-08-16 115012](https://github.com/user-attachments/assets/3f81b2e5-0c71-4e29-b84c-1d827bf05dc8)
-
+<img src="assets/images/readme_images/wireframe_game.jpg" alt="appearance" width="400px" margin=" 0 auto"/>
 
 ---
 
