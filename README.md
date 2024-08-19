@@ -187,6 +187,14 @@ The following links were used:
 
  - [Video Game Music](https://downloads.khinsider.com/) was used for the sound effects.
 
+### Technologies Used
+
+The Space Frog game is developed using the following tools and technologies:
+
+- **HTML**: For structuring the content and layout of the web pages.
+- **CSS**: For styling the website and making it visually appealing.
+- **JavaScript**: For implementing the game logic and interactivity.
+- **Phaser.js**: For rendering the game across different platforms.
 
 
 ## The Crew
