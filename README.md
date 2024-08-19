@@ -12,15 +12,14 @@ We where inspired by the game **Frogger** which is a classic arcade game from th
 
 - [Welcome to SPACE FROG - THE GAME](#welcome-to-space-frog---the-game)
   - [Table of contents](#table-of-contents)
-
-
-- [**Setup Instructions**](#setup-instructions)
-- [**Colour**](#colour)
-- [**Wire Frame**](#wire-frame)
-- [**Testing**](#testing)
-- [**Game Flow**](#game-flow)
-- [**References**](References)
-- [**Technologies used**](Technologies-used)
+    - [Setup Instructions](#setup-instructions)
+    - [Forking the GitHub Repository](#forking-the-github-repository)
+    - [Colour](#colour)
+    - [Wire Frame](#wire-frame)
+    - [Testing](#testing)
+    - [Game Flow](#game-flow)
+    - [References](#references)
+    - [The Crew](#the-crew)
 
 ### Setup Instructions
 
@@ -53,12 +52,14 @@ By forking the repository, we make a copy of the original repository on our GitH
 + Colours were taken from the first image that was used on the wire-frame.
 + Colours were selected using the colors color palette generator.
 
-![Space frog](https://github.com/user-attachments/assets/f5f31c15-e676-4b02-8e18-c526e704adab)
+<img src="assets/images/readme_images/space_frog_colours.png" alt="appearance" width="500px" margin=" 0 auto"/>
 
 
 
 ---
 ### Wire Frame
+
+Heir is the wireframe that was used to design the game. The wireframe was created using figma. The gave us a clear idea of the look and feel of the over all site.
 
 ![Screenshot 2024-08-16 114939](https://github.com/user-attachments/assets/c55ca5ad-e5e8-43df-aec4-f78eacd6710f)
 
