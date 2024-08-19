@@ -1,7 +1,7 @@
 export default class Player {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.sprite = scene.physics.add.sprite(x, y, "frog");
+    this.sprite = scene.physics.add.sprite(x, y, 'frog');
 
     // Set the player's display size and collision size
     this.sprite.setDisplaySize(60, 60);
@@ -12,7 +12,7 @@ export default class Player {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
 
     // Movement sound effect
-    this.moveSound = this.scene.sound.add("moveSound", { volume: 0.2 });
+    this.moveSound = this.scene.sound.add('moveSound', { volume: 0.2 });
 
     // Timer for managing sound playback
     this.soundTimer = 0;
@@ -44,67 +44,67 @@ export default class Player {
   }
 
   createTouchControls() {
-    const buttonSize = 50; // Smaller size for the buttons
+    const buttonSize = 30; // Smaller size for the buttons
     const controlMargin = 60; // Margin from the edge of the screen
     const buttonSpacing = 60; // Space between buttons
 
     const centerX = this.scene.scale.width / 2;
-    const bottomY = this.scene.scale.height - buttonSize / 2 - controlMargin;
+    const bottomY = this.scene.scale.height - buttonSize / 1 - controlMargin;
 
     this.upButton = this.scene.add
-      .image(centerX, bottomY - buttonSpacing, "upButton")
+      .image(centerX, bottomY - buttonSpacing, 'upButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
 
-    this.upButton.on("pointerdown", () => {
+    this.upButton.on('pointerdown', () => {
       this.moveUp = true;
     });
-    this.upButton.on("pointerup", () => {
+    this.upButton.on('pointerup', () => {
       this.moveUp = false;
     });
-    this.upButton.on("pointerout", () => {
+    this.upButton.on('pointerout', () => {
       this.moveUp = false;
     });
 
     this.downButton = this.scene.add
-      .image(centerX, bottomY + buttonSpacing, "downButton")
+      .image(centerX, bottomY + buttonSpacing, 'downButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
-    this.downButton.on("pointerdown", () => {
+    this.downButton.on('pointerdown', () => {
       this.moveDown = true;
     });
-    this.downButton.on("pointerup", () => {
+    this.downButton.on('pointerup', () => {
       this.moveDown = false;
     });
-    this.downButton.on("pointerout", () => {
+    this.downButton.on('pointerout', () => {
       this.moveDown = false;
     });
 
     this.leftButton = this.scene.add
-      .image(centerX - buttonSpacing, bottomY, "leftButton")
+      .image(centerX - buttonSpacing, bottomY, 'leftButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
-    this.leftButton.on("pointerdown", () => {
+    this.leftButton.on('pointerdown', () => {
       this.moveLeft = true;
     });
-    this.leftButton.on("pointerup", () => {
+    this.leftButton.on('pointerup', () => {
       this.moveLeft = false;
     });
-    this.leftButton.on("pointerout", () => {
+    this.leftButton.on('pointerout', () => {
       this.moveLeft = false;
     });
 
     this.rightButton = this.scene.add
-      .image(centerX + buttonSpacing, bottomY, "rightButton")
+      .image(centerX + buttonSpacing, bottomY, 'rightButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
-    this.rightButton.on("pointerdown", () => {
+    this.rightButton.on('pointerdown', () => {
       this.moveRight = true;
     });
-    this.rightButton.on("pointerup", () => {
+    this.rightButton.on('pointerup', () => {
       this.moveRight = false;
     });
-    this.rightButton.on("pointerout", () => {
+    this.rightButton.on('pointerout', () => {
       this.moveRight = false;
     });
 
@@ -123,11 +123,11 @@ export default class Player {
       this.scene.scale.height - buttonSize / 2 - controlMargin;
 
     this.toggleButton = this.scene.add
-      .image(toggleButtonX, toggleButtonY, "toggleButton")
+      .image(toggleButtonX, toggleButtonY, 'toggleButton')
       .setDisplaySize(buttonSize, buttonSize)
       .setInteractive();
 
-    this.toggleButton.on("pointerdown", () => {
+    this.toggleButton.on('pointerdown', () => {
       this.toggleTouchControls();
     });
   }
