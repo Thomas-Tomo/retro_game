@@ -12,14 +12,16 @@ We where inspired by the game **Frogger** which is a classic arcade game from th
 
 - [Welcome to SPACE FROG - THE GAME](#welcome-to-space-frog---the-game)
   - [Table of contents](#table-of-contents)
-    - [Setup Instructions](#setup-instructions)
-    - [Forking the GitHub Repository](#forking-the-github-repository)
-    - [Colour](#colour)
-    - [Wire Frame](#wire-frame)
-    - [Game Flow](#game-flow)
-    - [References](#references)
-    - [The Crew](#the-crew)
-----
+
+
+- [**Setup Instructions**](#setup-instructions)
+- [**Colour**](#colour)
+- [**Wire Frame**](#wire-frame)
+- [**Testing**](#testing)
+- [**Game Flow**](#game-flow)
+- [**References**](References)
+- [**Technologies used**](Technologies-used)
+
 ### Setup Instructions
 
 1. **Log in to Netlify:** Navigate to the [Netlify website](https://www.netlify.com/) and log in to your account.
@@ -65,6 +67,13 @@ By forking the repository, we make a copy of the original repository on our GitH
 
 ---
 
+### Testing
+
+ - All manual testing has been done.
+ - Every button and movement has been tested.
+
+---
+
 ### Game Flow
 
 1. **Main Screen**
@@ -94,11 +103,29 @@ By forking the repository, we make a copy of the original repository on our GitH
      - Level 4: Zelda
      - Level 5: Frogger
    - On each level there are baddies that relates to the the characters level that must be avoided.
+  
+ 4. **Playing the Game**
 
-4. **End Screen**
+       The game is available to play on both a PC and mobile device.
+    
+    *PC version*
+      - Use the arrow keys to move up, down, left and right across the screen.
+      - Alternativley click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
+   
+    *Mobile version*
+      - Use the touch screen arrows to up, down, left and right across the screen.
+   
+    *Both versions*
+      - Eat up the flies to continue your journey.
+      - Avoid the ememies and boulders.
+      - The is an option for the player to pause the game by pressing 'p'
+   
+
+5. **End Screen**
   
     - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratutaions"
     - The player has the option to return to the home page.
+   
 
 
 ### References
