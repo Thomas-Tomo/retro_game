@@ -89,8 +89,24 @@ By forking the repository, we make a copy of the original repository on our GitH
      - Level 4: Zelda
      - Level 5: Frogger
    - On each level there are baddies that relates to the the characters level that must be avoided.
+  
+ 4. **Playing the Game**
 
-4. **End Screen**
+       The game is available to play on both a PC and mobile device.
+    
+    *PC version*
+      - Use the arrow keys to move up, down, left and right across the screen.
+      - Alternativley click the controller on the right hand side of the screen which will then display four arrow keys on the screen which can be used.
+   
+    *Mobile version*
+      - Use the touch screen arrows to up, down, left and right across the screen.
+   
+    *Both versions*
+      - Eat up the flies to continue your journey.
+      - Avoid the ememies and boulders.
+   
+
+5. **End Screen**
   
     - When all the levels have been completed, the player is greeted with some fireworks, an image of a frog and the words "Congratutaions"
     - The player has the option to return to the home page.
