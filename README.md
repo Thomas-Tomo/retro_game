@@ -6,11 +6,15 @@ This web-based game has a hint of nostalgia with a modern day twist. There are a
 
 We where inspired by the game **Frogger** which is a classic arcade game from the 1980s. We have taken the concept of the game and added our own twist to it. The game is designed to be fun and engaging for all ages. The game is designed to be played on a desktop or laptop computer. The game is not designed for mobile devices (but still works on them).
 
-<img src="assets/images/readme_images/site_image.png" alt="appearance" width="500px" margin=" 0 auto"/>
+### Appearance:
+<img src="assets/images/readme_images/game_screens.png" alt="appearance" width="500px" margin=" 0 auto"/>
+
+<img src="assets/images/readme_images/crew_screens.png" alt="appearance" width="500px" margin=" 0 auto"/>
 
 ## Table of contents
 
 - [Welcome to SPACE FROG - THE GAME](#welcome-to-space-frog---the-game)
+    - [Appearance:](#appearance)
   - [Table of contents](#table-of-contents)
     - [Setup Instructions](#setup-instructions)
     - [Forking the GitHub Repository](#forking-the-github-repository)
@@ -19,6 +23,7 @@ We where inspired by the game **Frogger** which is a classic arcade game from th
     - [Testing](#testing)
     - [Functionality Testing:](#functionality-testing)
     - [Edge Case Testing:](#edge-case-testing)
+    - [Bug Tracking:](#bug-tracking)
     - [Final Check:](#final-check)
   - [Game Flow](#game-flow)
   - [References](#references)
@@ -100,10 +105,12 @@ Make adjustments based on player feedback to improve the overall experience.
 ### Edge Case Testing:
 
 Test unusual scenarios, such as pressing multiple keys at once or reaching extreme scores, to ensure the game handles them gracefully.
-Bug Tracking:
+
+
+### Bug Tracking:
 
 Document any bugs or issues discovered during testing.
-Fix identified bugs and retest to confirm that they are resolved.
+Fix identified bugs and retest to confirm that they are resolved. *(The only bugs are the fly's that you can eat 😜)*
 
 ### Final Check:
 
@@ -115,10 +122,12 @@ Ensure all features work as intended and that the game provides a fun and challe
    - The main screen has four buttons:
      - **Game**: Restarts the game.
      - **Crew**: Shows information about the development team.
-     - **GitHub**: Shows information about the the Crews Github and Linkined accounts
+     - **GitHub**: Shows information about the the Crews Github and Linkedin accounts
      - **Activate Game**: This starts the game.
+  
+  <img src="assets/images/readme_images/site_image.png" alt="appearance" width="500px" margin=" 0 auto"/>
     
-2. **Button Actions**
+1. **Button Actions**
    - **Activate Game**:
      - When the player clicks the "Activate Game" button, the game transitions into the first level of the game..
    - **Crew**:
@@ -127,7 +136,7 @@ Ensure all features work as intended and that the game provides a fun and challe
    - **GitHub**:
      - When the payer clicks the "Github" button they are directed to the page, with information about the development team. This includes names, and contact information.
        
-3. **Entering the Game**
+2. **Entering the Game**
 
    - After clicking "Activate Game", the player is taken to the first level.
    - The object of the game is to collect the relavent number of flies to proceed to the next level.
@@ -139,7 +148,7 @@ Ensure all features work as intended and that the game provides a fun and challe
      - Level 5: Frogger
    - On each level there are baddies that relates to the the characters level that must be avoided.
   
- 4. **Playing the Game**
+ 3. **Playing the Game**
 
        The game is available to play on both a PC and mobile device.
     
