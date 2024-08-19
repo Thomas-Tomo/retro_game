@@ -1,11 +1,18 @@
+<img src="assets/images/team_images/frog_tea.png" width='100px'>
 
-![Screenshot 2024-08-18 132107](https://github.com/user-attachments/assets/9f875686-dd30-4e20-bfe2-16b9ec905d57)
+# Welcome to SPACE FROG - THE GAME
 
-# Welcome to our Retro Game. 
+This web-based game has a hint of nostalgia with a modern day twist. There are a series of challenging levels that will test any gamer old or new.
 
-This web-based game has a hint of nostalgia with a modern day twist. There are a series of challenging levels that will test any gamer old or new. 
+We where inspired by the game **Frogger** which is a classic arcade game from the 1980s. We have taken the concept of the game and added our own twist to it. The game is designed to be fun and engaging for all ages. The game is designed to be played on a desktop or laptop computer. The game is not designed for mobile devices (but still works on them).
+
+<img src="assets/images/readme_images/site_image.png" alt="appearance" width="500px" margin=" 0 auto"/>
 
 ## Table of contents
+
+- [Welcome to SPACE FROG - THE GAME](#welcome-to-space-frog---the-game)
+  - [Table of contents](#table-of-contents)
+
 
 - [**Setup Instructions**](#setup-instructions)
 - [**Colour**](#colour)
@@ -14,8 +21,7 @@ This web-based game has a hint of nostalgia with a modern day twist. There are a
 - [**Game Flow**](#game-flow)
 - [**References**](References)
 - [**Technologies used**](Technologies-used)
-- [**The Crew**](#the-crew)
-----
+
 ### Setup Instructions
 
 1. **Log in to Netlify:** Navigate to the [Netlify website](https://www.netlify.com/) and log in to your account.
